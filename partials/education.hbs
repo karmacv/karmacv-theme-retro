@@ -1,6 +1,6 @@
 {{#if resume.education.length}}
 <section id="education">
-	<h2>Education</h2>
+	<h2>{{@root.resume.settings.labels.categories.education}}</h2>
 	{{#each resume.education}}
 	<div class="item">
 		<div class="date">
@@ -15,7 +15,7 @@
 			</span>
 			{{else}}
 			<span class="endDate">
-				- Present
+				- {{resume.settings.general.present}}
 			</span>
 			{{/if}}
 		</div>
@@ -36,7 +36,7 @@
 		{{/if}}
 		{{#if gpa}}
 		<div class="gpa">
-			GPA: {{gpa}}
+			{{@root.resume.settings.labels.education.gpa}}: {{gpa}}
 		</div>
 		{{/if}}
 		{{#if courses.length}}

@@ -5,19 +5,19 @@
 		<div class="contact">
 		{{#if website}}
 		<div class="website">
-			<strong>Website</strong>
+			<strong>{{@root.resume.settings.labels.basics.website}}</strong>
 			{{website}}
 		</div>
 		{{/if}}
 		{{#if email}}
 		<div class="email">
-			<strong>Email</strong>
+			<strong>{{@root.resume.settings.labels.basics.email}}</strong>
 			{{email}}
 		</div>
 		{{/if}}
 		{{#if phone}}
 		<div class="phone">
-			<strong>Phone</strong>
+			<strong>{{@root.resume.settings.labels.basics.phone}}</strong>
 			{{phone}}
 		</div>
 		{{/if}}
@@ -28,42 +28,42 @@
 		</div>
 		{{/if}}
 		{{#location}}
-		<h3>Location</h3>
+		<h3>{{@root.resume.settings.labels.categories.location}}</h3>
 		<section id="location">
 			{{#if address}}
 			<div class="address">
-				<strong>Address</strong>
+				<strong>{{@root.resume.settings.labels.location.address}}</strong>
 				{{address}}
 			</div>
 			{{/if}}
 			{{#if postalCode}}
 			<div class="postalCode">
-				<strong>Postal code</strong>
+				<strong>{{@root.resume.settings.labels.location.postalCode}}</strong>
 				{{postalCode}}
 			</div>
 			{{/if}}
 			{{#if city}}
 			<div class="city">
-				<strong>City</strong>
+				<strong>{{@root.resume.settings.labels.location.city}}</strong>
 				{{city}}
 			</div>
 			{{/if}}
 			{{#if countryCode}}
 			<div class="countryCode">
-				<strong>Country code</strong>
+				<strong>{{@root.resume.settings.labels.location.countryCode}}</strong>
 				{{countryCode}}
 			</div>
 			{{/if}}
 			{{#if region}}
 			<div class="region">
-				<strong>Region</strong>
+				<strong>{{@root.resume.settings.labels.location.region}}</strong>
 				{{region}}
 			</div>
 			{{/if}}
 		</section>
 		{{/location}}
 		{{#if profiles.length}}
-		<h3>Profiles</h3>
+		<h3>{{@root.resume.settings.labels.categories.profiles}}</h3>
 		<section id="profiles">
 			{{#each profiles}}
 			<div class="item">
