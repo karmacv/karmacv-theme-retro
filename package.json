@@ -9,6 +9,11 @@
   },
   "license": "MIT",
   "dependencies": {
-    "handlebars": "^4.7.6"
+    "@fortawesome/fontawesome-free": "^5.14.0",
+    "bootstrap": "^4.5.0",
+    "compile-sass": "^1.1.1",
+    "font-awesome": "^4.7.0",
+    "handlebars": "^4.7.6",
+    "node-cache": "^5.1.2"
   }
 }

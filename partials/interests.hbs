@@ -1,8 +1,9 @@
-{{#if resume.interests.length}}
-<section id="interests">
-	<h2>{{@root.resume.settings.labels.categories.interests}}</h2>
+<section class="sheet" id="interests">
+{{#ifIn "INTEREST" @root.resume.settings.visibleCategories }}
+	<h2>{{@root.resume.settings.labels.interest.categoryTitle}}</h2>
 	{{#each resume.interests}}
-	<div class="item">
+	<div class="item content">
+		{{>nav categoryKey=@root.resume.settings.categoryKeys.interest id=id showDelete=true}}
 		{{#if name}}
 		<div class="name">
 			{{name}}
@@ -17,5 +18,6 @@
 		{{/if}}
 	</div>
 	{{/each}}
+	{{>add categoryKey=@root.resume.settings.categoryKeys.interest}}
+{{/ifIn}}
 </section>
-{{/if}}

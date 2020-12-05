@@ -1,8 +1,9 @@
-{{#if resume.references.length}}
-<section id="references">
-	<h2>{{@root.resume.settings.labels.categories.references}}</h2>
+<section class="sheet" id="references">
+{{#ifIn "REFERENCE" @root.resume.settings.visibleCategories }}
+	<h2>{{@root.resume.settings.labels.reference.categoryTitle}}</h2>
 	{{#each resume.references}}
-	<div class="item">
+	<div class="item content">
+		{{>nav categoryKey=@root.resume.settings.categoryKeys.reference id=id showDelete=true}}
 		{{#if reference}}
 		<blockquote class="reference">
 			{{reference}}
@@ -15,5 +16,6 @@
 		{{/if}}
 	</div>
 	{{/each}}
+	{{>add categoryKey=@root.resume.settings.categoryKeys.reference}}
+{{/ifIn}}
 </section>
-{{/if}}

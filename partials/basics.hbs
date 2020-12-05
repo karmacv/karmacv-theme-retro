@@ -1,90 +1,131 @@
-{{#resume.basics}}
-	<h1>{{name}}</h1>
-	<h2>{{label}}</h2>
-	<section id="basics">
-		<div class="contact">
-		{{#if website}}
-		<div class="website">
-			<strong>{{@root.resume.settings.labels.basics.website}}</strong>
-			{{website}}
-		</div>
-		{{/if}}
-		{{#if email}}
-		<div class="email">
-			<strong>{{@root.resume.settings.labels.basics.email}}</strong>
-			{{email}}
-		</div>
-		{{/if}}
-		{{#if phone}}
-		<div class="phone">
-			<strong>{{@root.resume.settings.labels.basics.phone}}</strong>
-			{{phone}}
-		</div>
-		{{/if}}
-		</div>
-		{{#if summary}}
-		<div class="summary">
-			<p>{{summary}}</p>
-		</div>
-		{{/if}}
-		{{#location}}
-		<h3>{{@root.resume.settings.labels.categories.location}}</h3>
-		<section id="location">
-			{{#if address}}
-			<div class="address">
-				<strong>{{@root.resume.settings.labels.location.address}}</strong>
-				{{address}}
-			</div>
-			{{/if}}
-			{{#if postalCode}}
-			<div class="postalCode">
-				<strong>{{@root.resume.settings.labels.location.postalCode}}</strong>
-				{{postalCode}}
-			</div>
-			{{/if}}
-			{{#if city}}
-			<div class="city">
-				<strong>{{@root.resume.settings.labels.location.city}}</strong>
-				{{city}}
-			</div>
-			{{/if}}
-			{{#if countryCode}}
-			<div class="countryCode">
-				<strong>{{@root.resume.settings.labels.location.countryCode}}</strong>
-				{{countryCode}}
-			</div>
-			{{/if}}
-			{{#if region}}
-			<div class="region">
-				<strong>{{@root.resume.settings.labels.location.region}}</strong>
-				{{region}}
-			</div>
-			{{/if}}
-		</section>
-		{{/location}}
-		{{#if profiles.length}}
-		<h3>{{@root.resume.settings.labels.categories.profiles}}</h3>
-		<section id="profiles">
-			{{#each profiles}}
-			<div class="item">
-				{{#if network}}
-				<strong class="network">
-					{{network}}
-				</strong>
-				{{/if}}
-				{{#if username}}
-				<div class="username">
-					{{username}}
-				</div>
-				{{/if}}
-				{{#if url}}
-				<div class="url">
-					<a href="{{url}}">Link</a>
-				</div>
-				{{/if}}
-			</div>
-			{{/each}}
-		</section>
-		{{/if}}
-	</section>
-{{/resume.basics}}
+<section class="sheet" id='basics'>
+  {{#resume.basics}}
+    <div class="content">
+    {{>nav categoryKey=@root.resume.settings.categoryKeys.basic showDelete=false }}
+  	{{#if name}}
+      <h1>
+        {{name}}
+      </h1>
+    {{/if}}
+    {{#if label}}
+    <h2>
+      {{label}}
+    </h2>
+    {{/if}}
+    <div class='contact'>
+      {{#if website}}
+        <div class='website'>
+          <strong>
+            {{@root.resume.settings.labels.basics.website}}
+          </strong>
+          {{website}}
+        </div>
+      {{/if}}
+      {{#if email}}
+        <div class='email'>
+          <strong>
+            {{@root.resume.settings.labels.basics.email}}
+          </strong>
+          {{email}}
+        </div>
+      {{/if}}
+      {{#if phone}}
+        <div class='phone'>
+          <strong>
+            {{@root.resume.settings.labels.basics.phone}}
+          </strong>
+          {{phone}}
+        </div>
+      {{/if}}
+    </div>
+    {{#if summary}}
+      <div class='summary'>
+        <p>
+          {{summary}}
+        </p>
+      </div>
+    {{/if}}
+    </div>
+    {{#location}}
+    <div class="content">
+      {{>nav categoryKey=@root.resume.settings.categoryKeys.location showDelete=false }}
+      <h3>
+        {{@root.resume.settings.labels.categories.location}}
+      </h3>
+      <section class="sheet" id='location'>
+        {{#if address}}
+          <div class='address'>
+            <strong>
+              {{@root.resume.settings.labels.location.address}}
+            </strong>
+            {{address}}
+          </div>
+        {{/if}}
+        {{#if postalCode}}
+          <div class='postalCode'>
+            <strong>
+              {{@root.resume.settings.labels.location.postalCode}}
+            </strong>
+            {{postalCode}}
+          </div>
+        {{/if}}
+        {{#if city}}
+          <div class='city'>
+            <strong>
+              {{@root.resume.settings.labels.location.city}}
+            </strong>
+            {{city}}
+          </div>
+        {{/if}}
+        {{#if countryCode}}
+          <div class='countryCode'>
+            <strong>
+              {{@root.resume.settings.labels.location.countryCode}}
+            </strong>
+            {{countryCode}}
+          </div>
+        {{/if}}
+        {{#if region}}
+          <div class='region'>
+            <strong>
+              {{@root.resume.settings.labels.location.region}}
+            </strong>
+            {{region}}
+          </div>
+        {{/if}}
+      </section>
+    </div>
+    {{/location}}
+    {{#ifIn "PROFILE" @root.resume.settings.visibleCategories }}
+    <div class="content">
+      {{>nav categoryKey=@root.resume.settings.categoryKeys.profiles }}
+      <h3>
+        {{@root.resume.settings.labels.categories.profiles}}
+      </h3>
+      <section class="sheet" id='profiles'>
+        {{#each profiles}}
+          <div class='item'>
+            {{#if network}}
+              <strong class='network'>
+                {{network}}
+              </strong>
+            {{/if}}
+            {{#if username}}
+              <div class='username'>
+                {{username}}
+              </div>
+            {{/if}}
+            {{#if url}}
+              <div class='url'>
+                <a href="{{url}}">
+                  Link
+                </a>
+              </div>
+            {{/if}}
+          </div>
+        {{/each}}
+      </section>
+      </div>
+    {{/ifIn}}
+  {{/resume.basics}}
+</section>

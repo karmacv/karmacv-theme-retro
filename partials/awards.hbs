@@ -1,8 +1,9 @@
-{{#if resume.awards.length}}
-<section id="awards">
-	<h2>{{@root.resume.settings.labels.categories.awards}}</h2>
+<section class="sheet" id="awards">
+{{#ifIn "AWARD" @root.resume.settings.visibleCategories }}
+	<h2>{{@root.resume.settings.labels.award.categoryTitle}}</h2>
 	{{#each resume.awards}}
-	<div class="item">
+	<div class="item content">
+		{{>nav categoryKey=@root.resume.settings.categoryKeys.award id=id showDelete=true}}
 		{{#if title}}
 		<div class="title">
 			{{title}}
@@ -25,5 +26,6 @@
 		{{/if}}
 	</div>
 	{{/each}}
+	{{>add categoryKey=@root.resume.settings.categoryKeys.award}}
+{{/ifIn}}
 </section>
-{{/if}}

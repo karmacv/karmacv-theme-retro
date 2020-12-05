@@ -1,8 +1,9 @@
-{{#if resume.volunteer.length}}
-<section id="volunteer">
-	<h2>{{@root.resume.settings.labels.categories.volunteer}}</h2>
+<section class="sheet" id="volunteer">
+{{#ifIn "VOLUNTEER" @root.resume.settings.visibleCategories }}
+	<h2>{{@root.resume.settings.labels.volunteer.categoryTitle}}</h2>
 	{{#each resume.volunteer}}
-	<div class="item">
+	<div class="item content">
+		{{>nav categoryKey=@root.resume.settings.categoryKeys.volunteer id=id showDelete=true}}
 		{{#if organization}}
 		<h3 class="company">
 			{{organization}}
@@ -18,7 +19,8 @@
 			<span class="endDate">
 				- {{endDate}}
 			</span>
-			{{else}}
+			{{/if}}
+			{{#if present}}
 			<span class="endDate">
 				- {{resume.settings.general.present}}
 			</span>
@@ -48,5 +50,6 @@
 		{{/if}}
 	</div>
 	{{/each}}
+	{{>add categoryKey=@root.resume.settings.categoryKeys.volunteer}}
+{{/ifIn}}
 </section>
-{{/if}}

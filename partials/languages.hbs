@@ -1,8 +1,9 @@
-{{#if resume.languages.length}}
-<section id="languages">
-	<h2>{{@root.resume.settings.labels.categories.languages}}</h2>
+<section class="sheet" id="languages">
+{{#ifIn "LANGUAGE" @root.resume.settings.visibleCategories }}
+	<h2>{{@root.resume.settings.labels.language.categoryTitle}}</h2>
 	{{#each resume.languages}}
-	<div class="item">
+	<div class="item content">
+		{{>nav categoryKey=@root.resume.settings.categoryKeys.language id=id showDelete=true}}
 		{{#if language}}
 		<div class="language">
 			{{language}}
@@ -15,5 +16,6 @@
 		{{/if}}
 	</div>
 	{{/each}}
+	{{>add categoryKey=@root.resume.settings.categoryKeys.language}}
+{{/ifIn}}
 </section>
-{{/if}}

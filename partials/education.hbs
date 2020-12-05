@@ -1,8 +1,9 @@
-{{#if resume.education.length}}
-<section id="education">
-	<h2>{{@root.resume.settings.labels.categories.education}}</h2>
+<section class="sheet" id="education">
+{{#ifIn "EDUCATION" @root.resume.settings.visibleCategories }}
+	<h2>{{@root.resume.settings.labels.education.categoryTitle}}</h2>
 	{{#each resume.education}}
-	<div class="item">
+	<div class="item content">
+		{{>nav categoryKey=@root.resume.settings.categoryKeys.skill id=id showDelete=true}}
 		<div class="date">
 			{{#if startDate}}
 			<span class="startDate">
@@ -13,7 +14,8 @@
 			<span class="endDate">
 				- {{endDate}}
 			</span>
-			{{else}}
+			{{/if}}
+			{{#if present}}
 			<span class="endDate">
 				- {{resume.settings.general.present}}
 			</span>
@@ -48,5 +50,6 @@
 		{{/if}}
 	</div>
 	{{/each}}
+	{{>add categoryKey=@root.resume.settings.categoryKeys.skill}}
+{{/ifIn}}
 </section>
-{{/if}}

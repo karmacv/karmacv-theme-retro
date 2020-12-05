@@ -1,8 +1,9 @@
-{{#if resume.work.length}}
-<section id="work">
-	<h2>{{@root.resume.settings.labels.categories.work}}</h2>
+<section class="sheet" id="work">
+{{#ifIn "WORK" @root.resume.settings.visibleCategories }}
+	<h2>{{@root.resume.settings.labels.work.categoryTitle}}</h2>
 	{{#each resume.work}}
-	<div class="item">
+	<div class="item content">
+		{{>nav categoryKey=@root.resume.settings.categoryKeys.work id=id showDelete=true}}
 		{{#if company}}
 		<h3 class="name">
 			{{company}}
@@ -18,9 +19,10 @@
 			<span class="endDate">
 				- {{endDate}}
 			</span>
-			{{else}}
+			{{/if}}
+			{{#if present}}
 			<span class="endDate">
-				- Present
+				- {{resume.settings.general.present}}
 			</span>
 			{{/if}}
 		</div>
@@ -48,5 +50,6 @@
 		{{/if}}
 	</div>
 	{{/each}}
+	{{>add categoryKey=@root.resume.settings.categoryKeys.work }}
+{{/ifIn}}
 </section>
-{{/if}}

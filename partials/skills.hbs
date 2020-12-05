@@ -1,8 +1,9 @@
-{{#if resume.skills.length}}
-<section id="skills">
-	<h2>{{@root.resume.settings.labels.categories.skills}}</h2>
+<section class="sheet" id="skills">
+{{#ifIn "SKILL" @root.resume.settings.visibleCategories }}
+	<h2>{{@root.resume.settings.labels.skill.categoryTitle}}</h2>
 	{{#each resume.skills}}
-	<div class="item">
+	<div class="item content">
+		{{>nav categoryKey=@root.resume.settings.categoryKeys.skill id=id showDelete=true}}
 		{{#if name}}
 		<div class="name">
 			{{name}}
@@ -22,5 +23,6 @@
 		{{/if}}
 	</div>
 	{{/each}}
+	{{>add categoryKey=@root.resume.settings.categoryKeys.skill}}
+{{/ifIn}}
 </section>
-{{/if}}

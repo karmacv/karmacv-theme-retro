@@ -1,8 +1,9 @@
-{{#if resume.publications.length}}
-<section id="publications">
-	<h2>{{@root.resume.settings.labels.categories.publications}}</h2>
+<section class="sheet" id="publications">
+{{#ifIn "PUBLICATION" @root.resume.settings.visibleCategories }}
+	<h2>{{@root.resume.settings.labels.publication.categoryTitle}}</h2>
 	{{#each resume.publications}}
-	<div class="item">
+	<div class="item content">
+		{{>nav categoryKey=@root.resume.settings.categoryKeys.publication id=id showDelete=true}}
 		{{#if name}}
 		<div class="name">
 			{{name}}
@@ -30,5 +31,6 @@
 		{{/if}}
 	</div>
 	{{/each}}
+	{{>add categoryKey=@root.resume.settings.categoryKeys.publication}}
+{{/ifIn}}
 </section>
-{{/if}}

@@ -1,14 +1,11 @@
 <!doctype html>
 <html>
 	<head>
-	
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, user-scalable=no, minimal-ui">
-	
-	<title>John Doe</title>
-
-	<style>
-	body {
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimal-ui">
+		<title>John Doe</title>
+		<style>
+			body {
 	background: #fff;
 	font: 15px Arial, Helvetica, sans-serif;
 	line-height: 1.4;
@@ -62,265 +59,569 @@ blockquote {
 	width: 50%;
 }
 
+.nav-add {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	border: 1px solid #999;
+	background-color: #fff;
+}
 
-	</style>
-	
+.nav-add {
+	padding: 7px;
+}
+
+.nav-add img {
+	height: 20px;
+}
+
+.nav-add:hover {
+	fill: grey;
+	color: grey;
+	border-color: grey;
+}
+
+.content {
+	position: relative;
+}
+
+.icon {
+	display: inline-block;
+	width: 1em;
+	height: 1em;
+	stroke-width: 0;
+}
+
+.item-nav {
+	width: 25px;
+	position: absolute;
+	top: 0;
+	right: -25px;
+	display: none;
+}
+
+.item-nav-item {
+	cursor: pointer;
+	margin-top: 5px;
+}
+
+.item-nav-item:last {
+	margin-bottom: 5px;
+}
+
+.item-nav-item:hover {
+	color: grey;
+	fill: grey;
+}
+
+.item-nav-item img {
+	height: 20px;
+}
+
+.content:hover .item-nav {
+	display: flex;
+	flex-direction: column;
+	background-color: aliceblue;
+}
+
+.content:hover {
+	background-color: aliceblue;
+	-webkit-transition: all 0.2s 0s ease, all 0.2s 0s ease;
+	-moz-transition: all 0.2s 0s ease, all 0.2s 0s ease;
+	-o-transition: all 0.2s 0s ease, all 0.2s 0s ease;
+	transition: all 0.2s 0s ease, all 0.2s 0s ease;
+}
+
+body.WEB .item-nav-item,
+body.MOBILE .item-nav-item,
+body.PRINT .item-nav-item {
+	display: none;
+}
+
+body.WEB .nav-add,
+body.MOBILE .nav-add,
+body.PRINT .nav-add {
+	display: none;
+}
+
+body.WEB .content:hover,
+body.MOBILE .content:hover,
+body.PRINT .content:hover {
+	background-color: inherit;
+}
+		</style>
 	</head>
-	<body>
-	
-	<div id="resume">
-			<h1>John Doe</h1>
-			<h2>Programmer</h2>
-			<section id="basics">
-				<div class="contact">
-				<div class="website">
-					<strong>Website</strong>
-					http://johndoe-dummy.com
-				</div>
-				<div class="email">
-					<strong>Email</strong>
-					john.doe@doehost.com
-				</div>
-				<div class="phone">
-					<strong>Phone</strong>
-					(912) 555-4321
-				</div>
-				</div>
-				<div class="summary">
-					<p>Richard hails from Tulsa. He has earned degrees from the University of Oklahoma and Stanford. (Go Sooners and Cardinals!) Before starting Pied Piper, he worked for Hooli as a part time software developer. While his work focuses on applied information theory, mostly optimizing lossless compression schema of both the length-limited and adaptive variants, his non-work interests range widely, everything from quantum computing to chaos theory. He could tell you about it, but THAT would NOT be a “length-limited” conversation!</p>
-				</div>
-				<h3>Location</h3>
-				<section id="location">
-					<div class="address">
-						<strong>Address</strong>
-						2712 Broadway St
+	<body class="INTERACTIVE">
+		<div class="container">
+			<div id="resume">
+				<section class="sheet" id='basics'>
+				    <div class="content">
+				    <div class="item-nav">
+				        <div class="item-nav-item" onclick="window.dispatchEvent(new CustomEvent('edit', { detail: { categoryKey:  'BASICS', id: ''}}))">
+				            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABmJLR0QA/wD/AP+gvaeTAAAEoUlEQVR4nO3bTahUdRjH8c/1XisLKg0rgqyFUlGpJWTRhcQICiujTRsRijYtrEUKtkgUWkSlvVBUUJEWqEFoYfZmEvSKURtXZUWLqNQssUwlcVo853DOnXtm7rkzc52X5geHmfN//ufwfJ//y/k//zNDX339rzXQbgea0DwMYwq+wk5U2urRSdIgnhew+eMjnNVGv06KBrFBAB/B03gEe5OyL/VwECZhvQD9GwtytgvxfWL7GtNOtnMTrUl4VTF8qp4LwhJswypZyx8SE18tzcAPemA4LDd6kqvV8tXq+p6wUjh/HGtwIDnfgckl79G1PSGFr2BFUna1LAhv6uEg5OErWJaz9XwQquE/FCu8vFoRhJ3iidJRWiYb85vxspHwp+DU5HszQfgtue725l1unSbhL5zA0gL7DOwRs3qatzQahNXJNY9VO9BOnRDP9gHMrbKdj48xE7/IEp1vcBP+wJ3YpFwQzk4+jzXl8QRoo2zsr8uVL1Z/8hpPTxgWuUMF1zXvcuv0uHDqGI4aGYQB3IDTc/Wni7XBRcl5mSAMi2FWwQutdb855eEXY5HRQcjrXOxO7Ktz5fWCMCyGWEVkkYOtBGhGTxgJn6peEN5PyneLnpBXURC6Dj5VrSCswnuiJxQpH4QdugC+3vN4rOFATIyfiEVO0Tqh4+DXKgefql4QzhBPh4pYJ+THfT4IDzfncus0XvhUtYKwICn7USyWqrUmsW9rwNeWKw9/WwPXFwVhQATyvFy9Kbhf7CUcT+ovaczl1mmd+vDX4ANcO8Z9xpoTpogEKp9QPdSYy63TWPDzcTCp80CJ+9ULwis6DP5JGfytBfY8/CYMlbxvrSBs1iHwAzL4o4rhZ2gMPlV1EJbKxnzHwxPZ3SG8ZvzwcDn2G71p2nb4p9SHP1NsbtB4Gn6F7C3Qp/hZBHNZvYsmWtXwiwrqzMefYkuqUeXht8tWf23d0ygLn475FwvsQ2KXZkWBLVUe/h0ZfFs1IF5OloUvmvCGkvJ0VVekjoevtbydJ7atKnjDaPhBvJ7YD4pgVetS/JrUeRentcD3plUNX7TIaQX8ZfrwffiOgn9GH35C4WfLVnjb9eHbrz68iYefowPh4VHh1BHcXGDPr/A2qr/CKwP/tixRartmipeWleTzOwG5HAuTo2fhiY3Eisje/jE6706PjUbvuXc9PDwonFsrgGbjbjyLXYltr8bg5+L3pM5bOhCebPyvLLAN4rAYGtOqysc74XVEVlekl4ST99awf5HY7xM/OuiZlk+1VTh6Rw17mg+kk+Q+5eG36nB4+Ew4e30N+wViF+hzIyfJhQV1r9Jl8PCtcPiSEnWHxJ8VigLQlfDE46+CqSXrP5fUz+/p5bt9x2xjldFk2SJodslr7pHt+REtn76e3qKLWh5mycb0PlxZ4po5Sf09Rrb8Nl3U8qluMXK1VyYIk0XOcEKWHG1R/geMbVX1On5W1fl08WekG8VbmHOSY1rV98Mik5sq4O/CvxPm9QQqTYEbPTbokpZPVd0DLq5T95Do4vuTzwPJkZbtEo/ErlJ1ANaLzZCfZD9S3pOcd2WX7quvvurqP6t3OXxBZgxRAAAAAElFTkSuQmCC"/>
+				        </div>
+				    </div>      <h1>
+				        John Doe
+				      </h1>
+				    <h2>
+				      Programmer
+				    </h2>
+				    <div class='contact'>
+				        <div class='website'>
+				          <strong>
+				            Website
+				          </strong>
+				          http://johndoe-dummy.com
+				        </div>
+				        <div class='email'>
+				          <strong>
+				            E-Mail Adresse
+				          </strong>
+				          john.doe@doehost.com
+				        </div>
+				        <div class='phone'>
+				          <strong>
+				            Telefonnummer
+				          </strong>
+				          (912) 555-4321
+				        </div>
+				    </div>
+				      <div class='summary'>
+				        <p>
+				          Richard hails from Tulsa. He has earned degrees from the University of Oklahoma and Stanford. (Go Sooners and Cardinals!) Before starting Pied Piper, he worked for Hooli as a part time software developer. While his work focuses on applied information theory, mostly optimizing lossless compression schema of both the length-limited and adaptive variants, his non-work interests range widely, everything from quantum computing to chaos theory. He could tell you about it, but THAT would NOT be a “length-limited” conversation!
+				        </p>
+				      </div>
+				    </div>
+				    <div class="content">
+				      <div class="item-nav">
+				          <div class="item-nav-item" onclick="window.dispatchEvent(new CustomEvent('edit', { detail: { categoryKey:  'LOCATION', id: ''}}))">
+				              <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABmJLR0QA/wD/AP+gvaeTAAAEoUlEQVR4nO3bTahUdRjH8c/1XisLKg0rgqyFUlGpJWTRhcQICiujTRsRijYtrEUKtkgUWkSlvVBUUJEWqEFoYfZmEvSKURtXZUWLqNQssUwlcVo853DOnXtm7rkzc52X5geHmfN//ufwfJ//y/k//zNDX339rzXQbgea0DwMYwq+wk5U2urRSdIgnhew+eMjnNVGv06KBrFBAB/B03gEe5OyL/VwECZhvQD9GwtytgvxfWL7GtNOtnMTrUl4VTF8qp4LwhJswypZyx8SE18tzcAPemA4LDd6kqvV8tXq+p6wUjh/HGtwIDnfgckl79G1PSGFr2BFUna1LAhv6uEg5OErWJaz9XwQquE/FCu8vFoRhJ3iidJRWiYb85vxspHwp+DU5HszQfgtue725l1unSbhL5zA0gL7DOwRs3qatzQahNXJNY9VO9BOnRDP9gHMrbKdj48xE7/IEp1vcBP+wJ3YpFwQzk4+jzXl8QRoo2zsr8uVL1Z/8hpPTxgWuUMF1zXvcuv0uHDqGI4aGYQB3IDTc/Wni7XBRcl5mSAMi2FWwQutdb855eEXY5HRQcjrXOxO7Ktz5fWCMCyGWEVkkYOtBGhGTxgJn6peEN5PyneLnpBXURC6Dj5VrSCswnuiJxQpH4QdugC+3vN4rOFATIyfiEVO0Tqh4+DXKgefql4QzhBPh4pYJ+THfT4IDzfncus0XvhUtYKwICn7USyWqrUmsW9rwNeWKw9/WwPXFwVhQATyvFy9Kbhf7CUcT+ovaczl1mmd+vDX4ANcO8Z9xpoTpogEKp9QPdSYy63TWPDzcTCp80CJ+9ULwis6DP5JGfytBfY8/CYMlbxvrSBs1iHwAzL4o4rhZ2gMPlV1EJbKxnzHwxPZ3SG8ZvzwcDn2G71p2nb4p9SHP1NsbtB4Gn6F7C3Qp/hZBHNZvYsmWtXwiwrqzMefYkuqUeXht8tWf23d0ygLn475FwvsQ2KXZkWBLVUe/h0ZfFs1IF5OloUvmvCGkvJ0VVekjoevtbydJ7atKnjDaPhBvJ7YD4pgVetS/JrUeRentcD3plUNX7TIaQX8ZfrwffiOgn9GH35C4WfLVnjb9eHbrz68iYefowPh4VHh1BHcXGDPr/A2qr/CKwP/tixRartmipeWleTzOwG5HAuTo2fhiY3Eisje/jE6706PjUbvuXc9PDwonFsrgGbjbjyLXYltr8bg5+L3pM5bOhCebPyvLLAN4rAYGtOqysc74XVEVlekl4ST99awf5HY7xM/OuiZlk+1VTh6Rw17mg+kk+Q+5eG36nB4+Ew4e30N+wViF+hzIyfJhQV1r9Jl8PCtcPiSEnWHxJ8VigLQlfDE46+CqSXrP5fUz+/p5bt9x2xjldFk2SJodslr7pHt+REtn76e3qKLWh5mycb0PlxZ4po5Sf09Rrb8Nl3U8qluMXK1VyYIk0XOcEKWHG1R/geMbVX1On5W1fl08WekG8VbmHOSY1rV98Mik5sq4O/CvxPm9QQqTYEbPTbokpZPVd0DLq5T95Do4vuTzwPJkZbtEo/ErlJ1ANaLzZCfZD9S3pOcd2WX7quvvurqP6t3OXxBZgxRAAAAAElFTkSuQmCC"/>
+				          </div>
+				      </div>      <h3>
+				        
+				      </h3>
+				      <section class="sheet" id='location'>
+				          <div class='address'>
+				            <strong>
+				              Adresse
+				            </strong>
+				            2712 Broadway St
+				          </div>
+				          <div class='postalCode'>
+				            <strong>
+				              Postleitzahl
+				            </strong>
+				            CA 94115
+				          </div>
+				          <div class='city'>
+				            <strong>
+				              Stadt
+				            </strong>
+				            San Francisco
+				          </div>
+				          <div class='countryCode'>
+				            <strong>
+				              Ländercode
+				            </strong>
+				            US
+				          </div>
+				          <div class='region'>
+				            <strong>
+				              Bundesland
+				            </strong>
+				            California
+				          </div>
+				      </section>
+				    </div>
+				    <div class="content">
+				      <div class="item-nav">
+				          <div class="item-nav-item" onclick="window.dispatchEvent(new CustomEvent('edit', { detail: { categoryKey:  '', id: ''}}))">
+				              <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABmJLR0QA/wD/AP+gvaeTAAAEoUlEQVR4nO3bTahUdRjH8c/1XisLKg0rgqyFUlGpJWTRhcQICiujTRsRijYtrEUKtkgUWkSlvVBUUJEWqEFoYfZmEvSKURtXZUWLqNQssUwlcVo853DOnXtm7rkzc52X5geHmfN//ufwfJ//y/k//zNDX339rzXQbgea0DwMYwq+wk5U2urRSdIgnhew+eMjnNVGv06KBrFBAB/B03gEe5OyL/VwECZhvQD9GwtytgvxfWL7GtNOtnMTrUl4VTF8qp4LwhJswypZyx8SE18tzcAPemA4LDd6kqvV8tXq+p6wUjh/HGtwIDnfgckl79G1PSGFr2BFUna1LAhv6uEg5OErWJaz9XwQquE/FCu8vFoRhJ3iidJRWiYb85vxspHwp+DU5HszQfgtue725l1unSbhL5zA0gL7DOwRs3qatzQahNXJNY9VO9BOnRDP9gHMrbKdj48xE7/IEp1vcBP+wJ3YpFwQzk4+jzXl8QRoo2zsr8uVL1Z/8hpPTxgWuUMF1zXvcuv0uHDqGI4aGYQB3IDTc/Wni7XBRcl5mSAMi2FWwQutdb855eEXY5HRQcjrXOxO7Ktz5fWCMCyGWEVkkYOtBGhGTxgJn6peEN5PyneLnpBXURC6Dj5VrSCswnuiJxQpH4QdugC+3vN4rOFATIyfiEVO0Tqh4+DXKgefql4QzhBPh4pYJ+THfT4IDzfncus0XvhUtYKwICn7USyWqrUmsW9rwNeWKw9/WwPXFwVhQATyvFy9Kbhf7CUcT+ovaczl1mmd+vDX4ANcO8Z9xpoTpogEKp9QPdSYy63TWPDzcTCp80CJ+9ULwis6DP5JGfytBfY8/CYMlbxvrSBs1iHwAzL4o4rhZ2gMPlV1EJbKxnzHwxPZ3SG8ZvzwcDn2G71p2nb4p9SHP1NsbtB4Gn6F7C3Qp/hZBHNZvYsmWtXwiwrqzMefYkuqUeXht8tWf23d0ygLn475FwvsQ2KXZkWBLVUe/h0ZfFs1IF5OloUvmvCGkvJ0VVekjoevtbydJ7atKnjDaPhBvJ7YD4pgVetS/JrUeRentcD3plUNX7TIaQX8ZfrwffiOgn9GH35C4WfLVnjb9eHbrz68iYefowPh4VHh1BHcXGDPr/A2qr/CKwP/tixRartmipeWleTzOwG5HAuTo2fhiY3Eisje/jE6706PjUbvuXc9PDwonFsrgGbjbjyLXYltr8bg5+L3pM5bOhCebPyvLLAN4rAYGtOqysc74XVEVlekl4ST99awf5HY7xM/OuiZlk+1VTh6Rw17mg+kk+Q+5eG36nB4+Ew4e30N+wViF+hzIyfJhQV1r9Jl8PCtcPiSEnWHxJ8VigLQlfDE46+CqSXrP5fUz+/p5bt9x2xjldFk2SJodslr7pHt+REtn76e3qKLWh5mycb0PlxZ4po5Sf09Rrb8Nl3U8qluMXK1VyYIk0XOcEKWHG1R/geMbVX1On5W1fl08WekG8VbmHOSY1rV98Mik5sq4O/CvxPm9QQqTYEbPTbokpZPVd0DLq5T95Do4vuTzwPJkZbtEo/ErlJ1ANaLzZCfZD9S3pOcd2WX7quvvurqP6t3OXxBZgxRAAAAAElFTkSuQmCC"/>
+				          </div>
+				      </div>      <h3>
+				        
+				      </h3>
+				      <section class="sheet" id='profiles'>
+				          <div class='item'>
+				              <strong class='network'>
+				                Twitter
+				              </strong>
+				              <div class='username'>
+				                neutralthoughts
+				              </div>
+				          </div>
+				          <div class='item'>
+				              <strong class='network'>
+				                SoundCloud
+				              </strong>
+				              <div class='username'>
+				                dandymusicnl
+				              </div>
+				              <div class='url'>
+				                <a href="https://soundcloud.com/dandymusicnl">
+				                  Link
+				                </a>
+				              </div>
+				          </div>
+				      </section>
+				      </div>
+				</section>				<section class="sheet" id="work">
+				</section>				<section class="sheet" id="volunteer">
+					<h2>Freiwilligentätigkeit</h2>
+					<div class="item content">
+						<div class="item-nav">
+						    <div class="item-nav-item" onclick="window.dispatchEvent(new CustomEvent('edit', { detail: { categoryKey:  'VOLUNTEER', id: ''}}))">
+						        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABmJLR0QA/wD/AP+gvaeTAAAEoUlEQVR4nO3bTahUdRjH8c/1XisLKg0rgqyFUlGpJWTRhcQICiujTRsRijYtrEUKtkgUWkSlvVBUUJEWqEFoYfZmEvSKURtXZUWLqNQssUwlcVo853DOnXtm7rkzc52X5geHmfN//ufwfJ//y/k//zNDX339rzXQbgea0DwMYwq+wk5U2urRSdIgnhew+eMjnNVGv06KBrFBAB/B03gEe5OyL/VwECZhvQD9GwtytgvxfWL7GtNOtnMTrUl4VTF8qp4LwhJswypZyx8SE18tzcAPemA4LDd6kqvV8tXq+p6wUjh/HGtwIDnfgckl79G1PSGFr2BFUna1LAhv6uEg5OErWJaz9XwQquE/FCu8vFoRhJ3iidJRWiYb85vxspHwp+DU5HszQfgtue725l1unSbhL5zA0gL7DOwRs3qatzQahNXJNY9VO9BOnRDP9gHMrbKdj48xE7/IEp1vcBP+wJ3YpFwQzk4+jzXl8QRoo2zsr8uVL1Z/8hpPTxgWuUMF1zXvcuv0uHDqGI4aGYQB3IDTc/Wni7XBRcl5mSAMi2FWwQutdb855eEXY5HRQcjrXOxO7Ktz5fWCMCyGWEVkkYOtBGhGTxgJn6peEN5PyneLnpBXURC6Dj5VrSCswnuiJxQpH4QdugC+3vN4rOFATIyfiEVO0Tqh4+DXKgefql4QzhBPh4pYJ+THfT4IDzfncus0XvhUtYKwICn7USyWqrUmsW9rwNeWKw9/WwPXFwVhQATyvFy9Kbhf7CUcT+ovaczl1mmd+vDX4ANcO8Z9xpoTpogEKp9QPdSYy63TWPDzcTCp80CJ+9ULwis6DP5JGfytBfY8/CYMlbxvrSBs1iHwAzL4o4rhZ2gMPlV1EJbKxnzHwxPZ3SG8ZvzwcDn2G71p2nb4p9SHP1NsbtB4Gn6F7C3Qp/hZBHNZvYsmWtXwiwrqzMefYkuqUeXht8tWf23d0ygLn475FwvsQ2KXZkWBLVUe/h0ZfFs1IF5OloUvmvCGkvJ0VVekjoevtbydJ7atKnjDaPhBvJ7YD4pgVetS/JrUeRentcD3plUNX7TIaQX8ZfrwffiOgn9GH35C4WfLVnjb9eHbrz68iYefowPh4VHh1BHcXGDPr/A2qr/CKwP/tixRartmipeWleTzOwG5HAuTo2fhiY3Eisje/jE6706PjUbvuXc9PDwonFsrgGbjbjyLXYltr8bg5+L3pM5bOhCebPyvLLAN4rAYGtOqysc74XVEVlekl4ST99awf5HY7xM/OuiZlk+1VTh6Rw17mg+kk+Q+5eG36nB4+Ew4e30N+wViF+hzIyfJhQV1r9Jl8PCtcPiSEnWHxJ8VigLQlfDE46+CqSXrP5fUz+/p5bt9x2xjldFk2SJodslr7pHt+REtn76e3qKLWh5mycb0PlxZ4po5Sf09Rrb8Nl3U8qluMXK1VyYIk0XOcEKWHG1R/geMbVX1On5W1fl08WekG8VbmHOSY1rV98Mik5sq4O/CvxPm9QQqTYEbPTbokpZPVd0DLq5T95Do4vuTzwPJkZbtEo/ErlJ1ANaLzZCfZD9S3pOcd2WX7quvvurqP6t3OXxBZgxRAAAAAElFTkSuQmCC"/>
+						    </div>
+						    <div class="item-nav-item" onclick="window.dispatchEvent(new CustomEvent('delete', { detail: {categoryKey: 'VOLUNTEER', id: ''}}))">
+						        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABmJLR0QA/wD/AP+gvaeTAAADR0lEQVR4nO2bO28UMRSFPy1o2RBCaFAeIETFq6FAECKgAol/BRISaUJISUVHR48Ef2CjrVGUJTQ8sgskoSESIQtZCtsKWrHjO7bHniRzJMur0bXv9Rn7zB17FipUiIljwCKwCfQt5SswBxxJEmlBeI594INlLkmkBeAesAtsA3cE9re0bQ+4XmBcUXAceI+6ow9ytHuo2ywDjQLiioZ51EBWUDogRR14q9s+KiCuKLgK7AB/gNsO7Wd02x5wLWBcudFAKXiX/EKWqnSApwRaPoslGJBrWQhBgLnz+0mRZ9ibCd4wbO43ZMZd8+y8BSwFvFZUn0HwPyZDX4vpB/CfAfseRz3bt1DpbahrRfUZBIdeBLu6vuEVTlzc1HU300qIBdInNK5lPgQBDU1CpwQDkpYO8IR8L2AitLWDC6E7DoCLqNhWJMauj8E1XZ9xbF8kTExrmVYargSY3LrMBIjy/2oGODo59ASY6TUtsH0BvLHYSF5ingEvBf6mdB3k2T8MsyilbQpsP2jbeoaNJMvcQG2t2dDUfc0KbKMsgS1dn3D0ZTAG/BDYndX1Z0mnrgR0US8dU9hPbkzQY46+QCUydewE1IBJHdsXSceuBPSAddTb5GmLbQgCTFsbARM6pm+oGK3w2Q+Q5gJmCYQgYCvTKmcOAH4ESHUgxAww+mGbAbkegRCXAB8RlC6BqARIl0BMDSjlEgipAaWaATE1IK8IRiXAlg6H0ACpCJpYKg2QduxDwCbwEzgFjGbYxSJgFBjXMX2Xdux7MGLeuLKWQaxEKPfdB38CJEIYKxHKLYAQl4CiE6EkBEiEMJYGHOglUNoZICFgG/hNPBEs3RIAFXgsEcy1BHyPx6XZYJPsPUHbsfYqaovrV4aN2QwN8j2QFA1U4Duk/diipmPYJcEXpRuoXdiJ2I7/waSOYT1vwxB3rQyHJE4CCGEIKMM5oZMAQjUDCiWghfuHDUuWfgaP0cxTKMkM+KTrSwPXfT6o6g/5Peya8f3Rw6czrqAC2gLOJ/B/DpUg9YHLCfwD8FoH0AbuAyMRfI4Ad1H/JukDryL4HIpp4B3pPoZqs5cJJsM46h9eq6hzuaIH3dO+HgMnI4yvQoUKFSocOPwFaSUIUcsaHeoAAAAASUVORK5CYII="/>
+						    </div>
+						</div>		<h3 class="company">
+							CoderDojo
+						</h3>
+						<div class="date">
+							<span class="startDate">
+								2012-01-01
+							</span>
+							<span class="endDate">
+								- 2013-01-01
+							</span>
+						</div>
+						<div class="position">
+							Teacher
+						</div>
+						<div class="website">
+							<a href="http://coderdojo.com/">http://coderdojo.com/</a>
+						</div>
+						<div class="summary">
+							<p>Global movement of free coding clubs for young people.</p>
+						</div>
+						<ul class="highlights">
+							<li>Awarded &#x27;Teacher of the Month&#x27;</li>
+						</ul>
 					</div>
-					<div class="postalCode">
-						<strong>PostalCode</strong>
-						CA 94115
+					<div class="item content">
+						<div class="item-nav">
+						    <div class="item-nav-item" onclick="window.dispatchEvent(new CustomEvent('edit', { detail: { categoryKey:  'VOLUNTEER', id: ''}}))">
+						        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABmJLR0QA/wD/AP+gvaeTAAAEoUlEQVR4nO3bTahUdRjH8c/1XisLKg0rgqyFUlGpJWTRhcQICiujTRsRijYtrEUKtkgUWkSlvVBUUJEWqEFoYfZmEvSKURtXZUWLqNQssUwlcVo853DOnXtm7rkzc52X5geHmfN//ufwfJ//y/k//zNDX339rzXQbgea0DwMYwq+wk5U2urRSdIgnhew+eMjnNVGv06KBrFBAB/B03gEe5OyL/VwECZhvQD9GwtytgvxfWL7GtNOtnMTrUl4VTF8qp4LwhJswypZyx8SE18tzcAPemA4LDd6kqvV8tXq+p6wUjh/HGtwIDnfgckl79G1PSGFr2BFUna1LAhv6uEg5OErWJaz9XwQquE/FCu8vFoRhJ3iidJRWiYb85vxspHwp+DU5HszQfgtue725l1unSbhL5zA0gL7DOwRs3qatzQahNXJNY9VO9BOnRDP9gHMrbKdj48xE7/IEp1vcBP+wJ3YpFwQzk4+jzXl8QRoo2zsr8uVL1Z/8hpPTxgWuUMF1zXvcuv0uHDqGI4aGYQB3IDTc/Wni7XBRcl5mSAMi2FWwQutdb855eEXY5HRQcjrXOxO7Ktz5fWCMCyGWEVkkYOtBGhGTxgJn6peEN5PyneLnpBXURC6Dj5VrSCswnuiJxQpH4QdugC+3vN4rOFATIyfiEVO0Tqh4+DXKgefql4QzhBPh4pYJ+THfT4IDzfncus0XvhUtYKwICn7USyWqrUmsW9rwNeWKw9/WwPXFwVhQATyvFy9Kbhf7CUcT+ovaczl1mmd+vDX4ANcO8Z9xpoTpogEKp9QPdSYy63TWPDzcTCp80CJ+9ULwis6DP5JGfytBfY8/CYMlbxvrSBs1iHwAzL4o4rhZ2gMPlV1EJbKxnzHwxPZ3SG8ZvzwcDn2G71p2nb4p9SHP1NsbtB4Gn6F7C3Qp/hZBHNZvYsmWtXwiwrqzMefYkuqUeXht8tWf23d0ygLn475FwvsQ2KXZkWBLVUe/h0ZfFs1IF5OloUvmvCGkvJ0VVekjoevtbydJ7atKnjDaPhBvJ7YD4pgVetS/JrUeRentcD3plUNX7TIaQX8ZfrwffiOgn9GH35C4WfLVnjb9eHbrz68iYefowPh4VHh1BHcXGDPr/A2qr/CKwP/tixRartmipeWleTzOwG5HAuTo2fhiY3Eisje/jE6706PjUbvuXc9PDwonFsrgGbjbjyLXYltr8bg5+L3pM5bOhCebPyvLLAN4rAYGtOqysc74XVEVlekl4ST99awf5HY7xM/OuiZlk+1VTh6Rw17mg+kk+Q+5eG36nB4+Ew4e30N+wViF+hzIyfJhQV1r9Jl8PCtcPiSEnWHxJ8VigLQlfDE46+CqSXrP5fUz+/p5bt9x2xjldFk2SJodslr7pHt+REtn76e3qKLWh5mycb0PlxZ4po5Sf09Rrb8Nl3U8qluMXK1VyYIk0XOcEKWHG1R/geMbVX1On5W1fl08WekG8VbmHOSY1rV98Mik5sq4O/CvxPm9QQqTYEbPTbokpZPVd0DLq5T95Do4vuTzwPJkZbtEo/ErlJ1ANaLzZCfZD9S3pOcd2WX7quvvurqP6t3OXxBZgxRAAAAAElFTkSuQmCC"/>
+						    </div>
+						    <div class="item-nav-item" onclick="window.dispatchEvent(new CustomEvent('delete', { detail: {categoryKey: 'VOLUNTEER', id: ''}}))">
+						        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABmJLR0QA/wD/AP+gvaeTAAADR0lEQVR4nO2bO28UMRSFPy1o2RBCaFAeIETFq6FAECKgAol/BRISaUJISUVHR48Ef2CjrVGUJTQ8sgskoSESIQtZCtsKWrHjO7bHniRzJMur0bXv9Rn7zB17FipUiIljwCKwCfQt5SswBxxJEmlBeI594INlLkmkBeAesAtsA3cE9re0bQ+4XmBcUXAceI+6ow9ytHuo2ywDjQLiioZ51EBWUDogRR14q9s+KiCuKLgK7AB/gNsO7Wd02x5wLWBcudFAKXiX/EKWqnSApwRaPoslGJBrWQhBgLnz+0mRZ9ibCd4wbO43ZMZd8+y8BSwFvFZUn0HwPyZDX4vpB/CfAfseRz3bt1DpbahrRfUZBIdeBLu6vuEVTlzc1HU300qIBdInNK5lPgQBDU1CpwQDkpYO8IR8L2AitLWDC6E7DoCLqNhWJMauj8E1XZ9xbF8kTExrmVYargSY3LrMBIjy/2oGODo59ASY6TUtsH0BvLHYSF5ingEvBf6mdB3k2T8MsyilbQpsP2jbeoaNJMvcQG2t2dDUfc0KbKMsgS1dn3D0ZTAG/BDYndX1Z0mnrgR0US8dU9hPbkzQY46+QCUydewE1IBJHdsXSceuBPSAddTb5GmLbQgCTFsbARM6pm+oGK3w2Q+Q5gJmCYQgYCvTKmcOAH4ESHUgxAww+mGbAbkegRCXAB8RlC6BqARIl0BMDSjlEgipAaWaATE1IK8IRiXAlg6H0ACpCJpYKg2QduxDwCbwEzgFjGbYxSJgFBjXMX2Xdux7MGLeuLKWQaxEKPfdB38CJEIYKxHKLYAQl4CiE6EkBEiEMJYGHOglUNoZICFgG/hNPBEs3RIAFXgsEcy1BHyPx6XZYJPsPUHbsfYqaovrV4aN2QwN8j2QFA1U4Duk/diipmPYJcEXpRuoXdiJ2I7/waSOYT1vwxB3rQyHJE4CCGEIKMM5oZMAQjUDCiWghfuHDUuWfgaP0cxTKMkM+KTrSwPXfT6o6g/5Peya8f3Rw6czrqAC2gLOJ/B/DpUg9YHLCfwD8FoH0AbuAyMRfI4Ad1H/JukDryL4HIpp4B3pPoZqs5cJJsM46h9eq6hzuaIH3dO+HgMnI4yvQoUKFSocOPwFaSUIUcsaHeoAAAAASUVORK5CYII="/>
+						    </div>
+						</div>		<h3 class="company">
+							CoderDojo
+						</h3>
+						<div class="date">
+							<span class="startDate">
+								2012-01-01
+							</span>
+							<span class="endDate">
+								- 2013-01-01
+							</span>
+						</div>
+						<div class="position">
+							Teacher
+						</div>
+						<div class="website">
+							<a href="http://coderdojo.com/">http://coderdojo.com/</a>
+						</div>
+						<div class="summary">
+							<p>Global movement of free coding clubs for young people.</p>
+						</div>
+						<ul class="highlights">
+							<li>Awarded &#x27;Teacher of the Month&#x27;</li>
+						</ul>
 					</div>
-					<div class="city">
-						<strong>City</strong>
-						San Francisco
+					<div class="item content">
+						<div class="item-nav">
+						    <div class="item-nav-item" onclick="window.dispatchEvent(new CustomEvent('edit', { detail: { categoryKey:  'VOLUNTEER', id: ''}}))">
+						        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABmJLR0QA/wD/AP+gvaeTAAAEoUlEQVR4nO3bTahUdRjH8c/1XisLKg0rgqyFUlGpJWTRhcQICiujTRsRijYtrEUKtkgUWkSlvVBUUJEWqEFoYfZmEvSKURtXZUWLqNQssUwlcVo853DOnXtm7rkzc52X5geHmfN//ufwfJ//y/k//zNDX339rzXQbgea0DwMYwq+wk5U2urRSdIgnhew+eMjnNVGv06KBrFBAB/B03gEe5OyL/VwECZhvQD9GwtytgvxfWL7GtNOtnMTrUl4VTF8qp4LwhJswypZyx8SE18tzcAPemA4LDd6kqvV8tXq+p6wUjh/HGtwIDnfgckl79G1PSGFr2BFUna1LAhv6uEg5OErWJaz9XwQquE/FCu8vFoRhJ3iidJRWiYb85vxspHwp+DU5HszQfgtue725l1unSbhL5zA0gL7DOwRs3qatzQahNXJNY9VO9BOnRDP9gHMrbKdj48xE7/IEp1vcBP+wJ3YpFwQzk4+jzXl8QRoo2zsr8uVL1Z/8hpPTxgWuUMF1zXvcuv0uHDqGI4aGYQB3IDTc/Wni7XBRcl5mSAMi2FWwQutdb855eEXY5HRQcjrXOxO7Ktz5fWCMCyGWEVkkYOtBGhGTxgJn6peEN5PyneLnpBXURC6Dj5VrSCswnuiJxQpH4QdugC+3vN4rOFATIyfiEVO0Tqh4+DXKgefql4QzhBPh4pYJ+THfT4IDzfncus0XvhUtYKwICn7USyWqrUmsW9rwNeWKw9/WwPXFwVhQATyvFy9Kbhf7CUcT+ovaczl1mmd+vDX4ANcO8Z9xpoTpogEKp9QPdSYy63TWPDzcTCp80CJ+9ULwis6DP5JGfytBfY8/CYMlbxvrSBs1iHwAzL4o4rhZ2gMPlV1EJbKxnzHwxPZ3SG8ZvzwcDn2G71p2nb4p9SHP1NsbtB4Gn6F7C3Qp/hZBHNZvYsmWtXwiwrqzMefYkuqUeXht8tWf23d0ygLn475FwvsQ2KXZkWBLVUe/h0ZfFs1IF5OloUvmvCGkvJ0VVekjoevtbydJ7atKnjDaPhBvJ7YD4pgVetS/JrUeRentcD3plUNX7TIaQX8ZfrwffiOgn9GH35C4WfLVnjb9eHbrz68iYefowPh4VHh1BHcXGDPr/A2qr/CKwP/tixRartmipeWleTzOwG5HAuTo2fhiY3Eisje/jE6706PjUbvuXc9PDwonFsrgGbjbjyLXYltr8bg5+L3pM5bOhCebPyvLLAN4rAYGtOqysc74XVEVlekl4ST99awf5HY7xM/OuiZlk+1VTh6Rw17mg+kk+Q+5eG36nB4+Ew4e30N+wViF+hzIyfJhQV1r9Jl8PCtcPiSEnWHxJ8VigLQlfDE46+CqSXrP5fUz+/p5bt9x2xjldFk2SJodslr7pHt+REtn76e3qKLWh5mycb0PlxZ4po5Sf09Rrb8Nl3U8qluMXK1VyYIk0XOcEKWHG1R/geMbVX1On5W1fl08WekG8VbmHOSY1rV98Mik5sq4O/CvxPm9QQqTYEbPTbokpZPVd0DLq5T95Do4vuTzwPJkZbtEo/ErlJ1ANaLzZCfZD9S3pOcd2WX7quvvurqP6t3OXxBZgxRAAAAAElFTkSuQmCC"/>
+						    </div>
+						    <div class="item-nav-item" onclick="window.dispatchEvent(new CustomEvent('delete', { detail: {categoryKey: 'VOLUNTEER', id: ''}}))">
+						        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABmJLR0QA/wD/AP+gvaeTAAADR0lEQVR4nO2bO28UMRSFPy1o2RBCaFAeIETFq6FAECKgAol/BRISaUJISUVHR48Ef2CjrVGUJTQ8sgskoSESIQtZCtsKWrHjO7bHniRzJMur0bXv9Rn7zB17FipUiIljwCKwCfQt5SswBxxJEmlBeI594INlLkmkBeAesAtsA3cE9re0bQ+4XmBcUXAceI+6ow9ytHuo2ywDjQLiioZ51EBWUDogRR14q9s+KiCuKLgK7AB/gNsO7Wd02x5wLWBcudFAKXiX/EKWqnSApwRaPoslGJBrWQhBgLnz+0mRZ9ibCd4wbO43ZMZd8+y8BSwFvFZUn0HwPyZDX4vpB/CfAfseRz3bt1DpbahrRfUZBIdeBLu6vuEVTlzc1HU300qIBdInNK5lPgQBDU1CpwQDkpYO8IR8L2AitLWDC6E7DoCLqNhWJMauj8E1XZ9xbF8kTExrmVYargSY3LrMBIjy/2oGODo59ASY6TUtsH0BvLHYSF5ingEvBf6mdB3k2T8MsyilbQpsP2jbeoaNJMvcQG2t2dDUfc0KbKMsgS1dn3D0ZTAG/BDYndX1Z0mnrgR0US8dU9hPbkzQY46+QCUydewE1IBJHdsXSceuBPSAddTb5GmLbQgCTFsbARM6pm+oGK3w2Q+Q5gJmCYQgYCvTKmcOAH4ESHUgxAww+mGbAbkegRCXAB8RlC6BqARIl0BMDSjlEgipAaWaATE1IK8IRiXAlg6H0ACpCJpYKg2QduxDwCbwEzgFjGbYxSJgFBjXMX2Xdux7MGLeuLKWQaxEKPfdB38CJEIYKxHKLYAQl4CiE6EkBEiEMJYGHOglUNoZICFgG/hNPBEs3RIAFXgsEcy1BHyPx6XZYJPsPUHbsfYqaovrV4aN2QwN8j2QFA1U4Duk/diipmPYJcEXpRuoXdiJ2I7/waSOYT1vwxB3rQyHJE4CCGEIKMM5oZMAQjUDCiWghfuHDUuWfgaP0cxTKMkM+KTrSwPXfT6o6g/5Peya8f3Rw6czrqAC2gLOJ/B/DpUg9YHLCfwD8FoH0AbuAyMRfI4Ad1H/JukDryL4HIpp4B3pPoZqs5cJJsM46h9eq6hzuaIH3dO+HgMnI4yvQoUKFSocOPwFaSUIUcsaHeoAAAAASUVORK5CYII="/>
+						    </div>
+						</div>		<h3 class="company">
+							CoderDojo
+						</h3>
+						<div class="date">
+							<span class="startDate">
+								2012-01-01
+							</span>
+							<span class="endDate">
+								- 2013-01-01
+							</span>
+						</div>
+						<div class="position">
+							Teacher
+						</div>
+						<div class="website">
+							<a href="http://coderdojo.com/">http://coderdojo.com/</a>
+						</div>
+						<div class="summary">
+							<p>Global movement of free coding clubs for young people.</p>
+						</div>
+						<ul class="highlights">
+							<li>Awarded &#x27;Teacher of the Month&#x27;</li>
+						</ul>
 					</div>
-					<div class="countryCode">
-						<strong>Country code</strong>
-						US
+					<div class="item content">
+						<div class="item-nav">
+						    <div class="item-nav-item" onclick="window.dispatchEvent(new CustomEvent('edit', { detail: { categoryKey:  'VOLUNTEER', id: ''}}))">
+						        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABmJLR0QA/wD/AP+gvaeTAAAEoUlEQVR4nO3bTahUdRjH8c/1XisLKg0rgqyFUlGpJWTRhcQICiujTRsRijYtrEUKtkgUWkSlvVBUUJEWqEFoYfZmEvSKURtXZUWLqNQssUwlcVo853DOnXtm7rkzc52X5geHmfN//ufwfJ//y/k//zNDX339rzXQbgea0DwMYwq+wk5U2urRSdIgnhew+eMjnNVGv06KBrFBAB/B03gEe5OyL/VwECZhvQD9GwtytgvxfWL7GtNOtnMTrUl4VTF8qp4LwhJswypZyx8SE18tzcAPemA4LDd6kqvV8tXq+p6wUjh/HGtwIDnfgckl79G1PSGFr2BFUna1LAhv6uEg5OErWJaz9XwQquE/FCu8vFoRhJ3iidJRWiYb85vxspHwp+DU5HszQfgtue725l1unSbhL5zA0gL7DOwRs3qatzQahNXJNY9VO9BOnRDP9gHMrbKdj48xE7/IEp1vcBP+wJ3YpFwQzk4+jzXl8QRoo2zsr8uVL1Z/8hpPTxgWuUMF1zXvcuv0uHDqGI4aGYQB3IDTc/Wni7XBRcl5mSAMi2FWwQutdb855eEXY5HRQcjrXOxO7Ktz5fWCMCyGWEVkkYOtBGhGTxgJn6peEN5PyneLnpBXURC6Dj5VrSCswnuiJxQpH4QdugC+3vN4rOFATIyfiEVO0Tqh4+DXKgefql4QzhBPh4pYJ+THfT4IDzfncus0XvhUtYKwICn7USyWqrUmsW9rwNeWKw9/WwPXFwVhQATyvFy9Kbhf7CUcT+ovaczl1mmd+vDX4ANcO8Z9xpoTpogEKp9QPdSYy63TWPDzcTCp80CJ+9ULwis6DP5JGfytBfY8/CYMlbxvrSBs1iHwAzL4o4rhZ2gMPlV1EJbKxnzHwxPZ3SG8ZvzwcDn2G71p2nb4p9SHP1NsbtB4Gn6F7C3Qp/hZBHNZvYsmWtXwiwrqzMefYkuqUeXht8tWf23d0ygLn475FwvsQ2KXZkWBLVUe/h0ZfFs1IF5OloUvmvCGkvJ0VVekjoevtbydJ7atKnjDaPhBvJ7YD4pgVetS/JrUeRentcD3plUNX7TIaQX8ZfrwffiOgn9GH35C4WfLVnjb9eHbrz68iYefowPh4VHh1BHcXGDPr/A2qr/CKwP/tixRartmipeWleTzOwG5HAuTo2fhiY3Eisje/jE6706PjUbvuXc9PDwonFsrgGbjbjyLXYltr8bg5+L3pM5bOhCebPyvLLAN4rAYGtOqysc74XVEVlekl4ST99awf5HY7xM/OuiZlk+1VTh6Rw17mg+kk+Q+5eG36nB4+Ew4e30N+wViF+hzIyfJhQV1r9Jl8PCtcPiSEnWHxJ8VigLQlfDE46+CqSXrP5fUz+/p5bt9x2xjldFk2SJodslr7pHt+REtn76e3qKLWh5mycb0PlxZ4po5Sf09Rrb8Nl3U8qluMXK1VyYIk0XOcEKWHG1R/geMbVX1On5W1fl08WekG8VbmHOSY1rV98Mik5sq4O/CvxPm9QQqTYEbPTbokpZPVd0DLq5T95Do4vuTzwPJkZbtEo/ErlJ1ANaLzZCfZD9S3pOcd2WX7quvvurqP6t3OXxBZgxRAAAAAElFTkSuQmCC"/>
+						    </div>
+						    <div class="item-nav-item" onclick="window.dispatchEvent(new CustomEvent('delete', { detail: {categoryKey: 'VOLUNTEER', id: ''}}))">
+						        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABmJLR0QA/wD/AP+gvaeTAAADR0lEQVR4nO2bO28UMRSFPy1o2RBCaFAeIETFq6FAECKgAol/BRISaUJISUVHR48Ef2CjrVGUJTQ8sgskoSESIQtZCtsKWrHjO7bHniRzJMur0bXv9Rn7zB17FipUiIljwCKwCfQt5SswBxxJEmlBeI594INlLkmkBeAesAtsA3cE9re0bQ+4XmBcUXAceI+6ow9ytHuo2ywDjQLiioZ51EBWUDogRR14q9s+KiCuKLgK7AB/gNsO7Wd02x5wLWBcudFAKXiX/EKWqnSApwRaPoslGJBrWQhBgLnz+0mRZ9ibCd4wbO43ZMZd8+y8BSwFvFZUn0HwPyZDX4vpB/CfAfseRz3bt1DpbahrRfUZBIdeBLu6vuEVTlzc1HU300qIBdInNK5lPgQBDU1CpwQDkpYO8IR8L2AitLWDC6E7DoCLqNhWJMauj8E1XZ9xbF8kTExrmVYargSY3LrMBIjy/2oGODo59ASY6TUtsH0BvLHYSF5ingEvBf6mdB3k2T8MsyilbQpsP2jbeoaNJMvcQG2t2dDUfc0KbKMsgS1dn3D0ZTAG/BDYndX1Z0mnrgR0US8dU9hPbkzQY46+QCUydewE1IBJHdsXSceuBPSAddTb5GmLbQgCTFsbARM6pm+oGK3w2Q+Q5gJmCYQgYCvTKmcOAH4ESHUgxAww+mGbAbkegRCXAB8RlC6BqARIl0BMDSjlEgipAaWaATE1IK8IRiXAlg6H0ACpCJpYKg2QduxDwCbwEzgFjGbYxSJgFBjXMX2Xdux7MGLeuLKWQaxEKPfdB38CJEIYKxHKLYAQl4CiE6EkBEiEMJYGHOglUNoZICFgG/hNPBEs3RIAFXgsEcy1BHyPx6XZYJPsPUHbsfYqaovrV4aN2QwN8j2QFA1U4Duk/diipmPYJcEXpRuoXdiJ2I7/waSOYT1vwxB3rQyHJE4CCGEIKMM5oZMAQjUDCiWghfuHDUuWfgaP0cxTKMkM+KTrSwPXfT6o6g/5Peya8f3Rw6czrqAC2gLOJ/B/DpUg9YHLCfwD8FoH0AbuAyMRfI4Ad1H/JukDryL4HIpp4B3pPoZqs5cJJsM46h9eq6hzuaIH3dO+HgMnI4yvQoUKFSocOPwFaSUIUcsaHeoAAAAASUVORK5CYII="/>
+						    </div>
+						</div>		<h3 class="company">
+							CoderDojo
+						</h3>
+						<div class="date">
+							<span class="startDate">
+								2012-01-01
+							</span>
+							<span class="endDate">
+								- 2013-01-01
+							</span>
+						</div>
+						<div class="position">
+							Teacher
+						</div>
+						<div class="website">
+							<a href="http://coderdojo.com/">http://coderdojo.com/</a>
+						</div>
+						<div class="summary">
+							<p>Global movement of free coding clubs for young people.</p>
+						</div>
+						<ul class="highlights">
+							<li>Awarded &#x27;Teacher of the Month&#x27;</li>
+						</ul>
 					</div>
-					<div class="region">
-						<strong>Region</strong>
-						California
+					<div class="item content">
+						<div class="item-nav">
+						    <div class="item-nav-item" onclick="window.dispatchEvent(new CustomEvent('edit', { detail: { categoryKey:  'VOLUNTEER', id: ''}}))">
+						        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABmJLR0QA/wD/AP+gvaeTAAAEoUlEQVR4nO3bTahUdRjH8c/1XisLKg0rgqyFUlGpJWTRhcQICiujTRsRijYtrEUKtkgUWkSlvVBUUJEWqEFoYfZmEvSKURtXZUWLqNQssUwlcVo853DOnXtm7rkzc52X5geHmfN//ufwfJ//y/k//zNDX339rzXQbgea0DwMYwq+wk5U2urRSdIgnhew+eMjnNVGv06KBrFBAB/B03gEe5OyL/VwECZhvQD9GwtytgvxfWL7GtNOtnMTrUl4VTF8qp4LwhJswypZyx8SE18tzcAPemA4LDd6kqvV8tXq+p6wUjh/HGtwIDnfgckl79G1PSGFr2BFUna1LAhv6uEg5OErWJaz9XwQquE/FCu8vFoRhJ3iidJRWiYb85vxspHwp+DU5HszQfgtue725l1unSbhL5zA0gL7DOwRs3qatzQahNXJNY9VO9BOnRDP9gHMrbKdj48xE7/IEp1vcBP+wJ3YpFwQzk4+jzXl8QRoo2zsr8uVL1Z/8hpPTxgWuUMF1zXvcuv0uHDqGI4aGYQB3IDTc/Wni7XBRcl5mSAMi2FWwQutdb855eEXY5HRQcjrXOxO7Ktz5fWCMCyGWEVkkYOtBGhGTxgJn6peEN5PyneLnpBXURC6Dj5VrSCswnuiJxQpH4QdugC+3vN4rOFATIyfiEVO0Tqh4+DXKgefql4QzhBPh4pYJ+THfT4IDzfncus0XvhUtYKwICn7USyWqrUmsW9rwNeWKw9/WwPXFwVhQATyvFy9Kbhf7CUcT+ovaczl1mmd+vDX4ANcO8Z9xpoTpogEKp9QPdSYy63TWPDzcTCp80CJ+9ULwis6DP5JGfytBfY8/CYMlbxvrSBs1iHwAzL4o4rhZ2gMPlV1EJbKxnzHwxPZ3SG8ZvzwcDn2G71p2nb4p9SHP1NsbtB4Gn6F7C3Qp/hZBHNZvYsmWtXwiwrqzMefYkuqUeXht8tWf23d0ygLn475FwvsQ2KXZkWBLVUe/h0ZfFs1IF5OloUvmvCGkvJ0VVekjoevtbydJ7atKnjDaPhBvJ7YD4pgVetS/JrUeRentcD3plUNX7TIaQX8ZfrwffiOgn9GH35C4WfLVnjb9eHbrz68iYefowPh4VHh1BHcXGDPr/A2qr/CKwP/tixRartmipeWleTzOwG5HAuTo2fhiY3Eisje/jE6706PjUbvuXc9PDwonFsrgGbjbjyLXYltr8bg5+L3pM5bOhCebPyvLLAN4rAYGtOqysc74XVEVlekl4ST99awf5HY7xM/OuiZlk+1VTh6Rw17mg+kk+Q+5eG36nB4+Ew4e30N+wViF+hzIyfJhQV1r9Jl8PCtcPiSEnWHxJ8VigLQlfDE46+CqSXrP5fUz+/p5bt9x2xjldFk2SJodslr7pHt+REtn76e3qKLWh5mycb0PlxZ4po5Sf09Rrb8Nl3U8qluMXK1VyYIk0XOcEKWHG1R/geMbVX1On5W1fl08WekG8VbmHOSY1rV98Mik5sq4O/CvxPm9QQqTYEbPTbokpZPVd0DLq5T95Do4vuTzwPJkZbtEo/ErlJ1ANaLzZCfZD9S3pOcd2WX7quvvurqP6t3OXxBZgxRAAAAAElFTkSuQmCC"/>
+						    </div>
+						    <div class="item-nav-item" onclick="window.dispatchEvent(new CustomEvent('delete', { detail: {categoryKey: 'VOLUNTEER', id: ''}}))">
+						        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABmJLR0QA/wD/AP+gvaeTAAADR0lEQVR4nO2bO28UMRSFPy1o2RBCaFAeIETFq6FAECKgAol/BRISaUJISUVHR48Ef2CjrVGUJTQ8sgskoSESIQtZCtsKWrHjO7bHniRzJMur0bXv9Rn7zB17FipUiIljwCKwCfQt5SswBxxJEmlBeI594INlLkmkBeAesAtsA3cE9re0bQ+4XmBcUXAceI+6ow9ytHuo2ywDjQLiioZ51EBWUDogRR14q9s+KiCuKLgK7AB/gNsO7Wd02x5wLWBcudFAKXiX/EKWqnSApwRaPoslGJBrWQhBgLnz+0mRZ9ibCd4wbO43ZMZd8+y8BSwFvFZUn0HwPyZDX4vpB/CfAfseRz3bt1DpbahrRfUZBIdeBLu6vuEVTlzc1HU300qIBdInNK5lPgQBDU1CpwQDkpYO8IR8L2AitLWDC6E7DoCLqNhWJMauj8E1XZ9xbF8kTExrmVYargSY3LrMBIjy/2oGODo59ASY6TUtsH0BvLHYSF5ingEvBf6mdB3k2T8MsyilbQpsP2jbeoaNJMvcQG2t2dDUfc0KbKMsgS1dn3D0ZTAG/BDYndX1Z0mnrgR0US8dU9hPbkzQY46+QCUydewE1IBJHdsXSceuBPSAddTb5GmLbQgCTFsbARM6pm+oGK3w2Q+Q5gJmCYQgYCvTKmcOAH4ESHUgxAww+mGbAbkegRCXAB8RlC6BqARIl0BMDSjlEgipAaWaATE1IK8IRiXAlg6H0ACpCJpYKg2QduxDwCbwEzgFjGbYxSJgFBjXMX2Xdux7MGLeuLKWQaxEKPfdB38CJEIYKxHKLYAQl4CiE6EkBEiEMJYGHOglUNoZICFgG/hNPBEs3RIAFXgsEcy1BHyPx6XZYJPsPUHbsfYqaovrV4aN2QwN8j2QFA1U4Duk/diipmPYJcEXpRuoXdiJ2I7/waSOYT1vwxB3rQyHJE4CCGEIKMM5oZMAQjUDCiWghfuHDUuWfgaP0cxTKMkM+KTrSwPXfT6o6g/5Peya8f3Rw6czrqAC2gLOJ/B/DpUg9YHLCfwD8FoH0AbuAyMRfI4Ad1H/JukDryL4HIpp4B3pPoZqs5cJJsM46h9eq6hzuaIH3dO+HgMnI4yvQoUKFSocOPwFaSUIUcsaHeoAAAAASUVORK5CYII="/>
+						    </div>
+						</div>		<h3 class="company">
+							CoderDojo
+						</h3>
+						<div class="date">
+							<span class="startDate">
+								2012-01-01
+							</span>
+							<span class="endDate">
+								- 2013-01-01
+							</span>
+						</div>
+						<div class="position">
+							Teacher
+						</div>
+						<div class="website">
+							<a href="http://coderdojo.com/">http://coderdojo.com/</a>
+						</div>
+						<div class="summary">
+							<p>Global movement of free coding clubs for young people.</p>
+						</div>
+						<ul class="highlights">
+							<li>Awarded &#x27;Teacher of the Month&#x27;</li>
+						</ul>
 					</div>
-				</section>
-				<h3></h3>
-				<section id="profiles">
-					<div class="item">
-						<strong class="network">
-							Twitter
-						</strong>
-						<div class="username">
-							neutralthoughts
+					<div class="nav-add" onclick="window.dispatchEvent(new CustomEvent('add', { detail: { categoryKey:  'VOLUNTEER'}}))">
+					    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAABmJLR0QA/wD/AP+gvaeTAAABmklEQVR4nO3cwUoDMRRA0YeL/pP1+7T6f126tN35DbqYKdYRoU3SlzvpPRAKxZEwV1MYHo2QJEmSJEmS1NImIt4i4hgRX1euQ0Ts5t+hRl7j+hDL9ZK+64EdYrqpjwXXbuPnP0WNnP7Ke12f5qH3BvTbqEHee29gdNceOcuf9chSGYPAGATGIDAGgTEIjEFgDAJjEBiDwBgExiAwBoExCIxBYAwCYxAYg8AYBMYgMAaBMQhMSZCawefS1UrWflMHvFsMPt86zH9zWdkrZcC7ZvA5S++huNQB7zVMARL2V3Sf/FCHGTXIZ1x+zu/PrttXXHP+Xqo1HFkEHlkjMAiMQWAMAmMQGIPAGATGIDAlQY7z67blRgbzNL+mPFzcBf/x+1Kv/T5X7Plim5iinB7DG+Tv+ogpxrDfQNQqCJ4f6jAGgTEIjEFgDAJjEBiDwBgExiAwBoExCIxBYAwCYxAYg8AYBMYgMAaBMQiMQWAMAmMQGIPAGATGIDBrCVIz4J06+HwvWgx4pww+34uaAe/hB58lSZIkSZKkHr4BY+pp6zwMxEMAAAAASUVORK5CYII="/>
+					</i></div></section>				<section class="sheet" id="education">
+					<h2>Erziehung</h2>
+					<div class="item content">
+						<div class="item-nav">
+						    <div class="item-nav-item" onclick="window.dispatchEvent(new CustomEvent('edit', { detail: { categoryKey:  'SKILL', id: ''}}))">
+						        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABmJLR0QA/wD/AP+gvaeTAAAEoUlEQVR4nO3bTahUdRjH8c/1XisLKg0rgqyFUlGpJWTRhcQICiujTRsRijYtrEUKtkgUWkSlvVBUUJEWqEFoYfZmEvSKURtXZUWLqNQssUwlcVo853DOnXtm7rkzc52X5geHmfN//ufwfJ//y/k//zNDX339rzXQbgea0DwMYwq+wk5U2urRSdIgnhew+eMjnNVGv06KBrFBAB/B03gEe5OyL/VwECZhvQD9GwtytgvxfWL7GtNOtnMTrUl4VTF8qp4LwhJswypZyx8SE18tzcAPemA4LDd6kqvV8tXq+p6wUjh/HGtwIDnfgckl79G1PSGFr2BFUna1LAhv6uEg5OErWJaz9XwQquE/FCu8vFoRhJ3iidJRWiYb85vxspHwp+DU5HszQfgtue725l1unSbhL5zA0gL7DOwRs3qatzQahNXJNY9VO9BOnRDP9gHMrbKdj48xE7/IEp1vcBP+wJ3YpFwQzk4+jzXl8QRoo2zsr8uVL1Z/8hpPTxgWuUMF1zXvcuv0uHDqGI4aGYQB3IDTc/Wni7XBRcl5mSAMi2FWwQutdb855eEXY5HRQcjrXOxO7Ktz5fWCMCyGWEVkkYOtBGhGTxgJn6peEN5PyneLnpBXURC6Dj5VrSCswnuiJxQpH4QdugC+3vN4rOFATIyfiEVO0Tqh4+DXKgefql4QzhBPh4pYJ+THfT4IDzfncus0XvhUtYKwICn7USyWqrUmsW9rwNeWKw9/WwPXFwVhQATyvFy9Kbhf7CUcT+ovaczl1mmd+vDX4ANcO8Z9xpoTpogEKp9QPdSYy63TWPDzcTCp80CJ+9ULwis6DP5JGfytBfY8/CYMlbxvrSBs1iHwAzL4o4rhZ2gMPlV1EJbKxnzHwxPZ3SG8ZvzwcDn2G71p2nb4p9SHP1NsbtB4Gn6F7C3Qp/hZBHNZvYsmWtXwiwrqzMefYkuqUeXht8tWf23d0ygLn475FwvsQ2KXZkWBLVUe/h0ZfFs1IF5OloUvmvCGkvJ0VVekjoevtbydJ7atKnjDaPhBvJ7YD4pgVetS/JrUeRentcD3plUNX7TIaQX8ZfrwffiOgn9GH35C4WfLVnjb9eHbrz68iYefowPh4VHh1BHcXGDPr/A2qr/CKwP/tixRartmipeWleTzOwG5HAuTo2fhiY3Eisje/jE6706PjUbvuXc9PDwonFsrgGbjbjyLXYltr8bg5+L3pM5bOhCebPyvLLAN4rAYGtOqysc74XVEVlekl4ST99awf5HY7xM/OuiZlk+1VTh6Rw17mg+kk+Q+5eG36nB4+Ew4e30N+wViF+hzIyfJhQV1r9Jl8PCtcPiSEnWHxJ8VigLQlfDE46+CqSXrP5fUz+/p5bt9x2xjldFk2SJodslr7pHt+REtn76e3qKLWh5mycb0PlxZ4po5Sf09Rrb8Nl3U8qluMXK1VyYIk0XOcEKWHG1R/geMbVX1On5W1fl08WekG8VbmHOSY1rV98Mik5sq4O/CvxPm9QQqTYEbPTbokpZPVd0DLq5T95Do4vuTzwPJkZbtEo/ErlJ1ANaLzZCfZD9S3pOcd2WX7quvvurqP6t3OXxBZgxRAAAAAElFTkSuQmCC"/>
+						    </div>
+						    <div class="item-nav-item" onclick="window.dispatchEvent(new CustomEvent('delete', { detail: {categoryKey: 'SKILL', id: ''}}))">
+						        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABmJLR0QA/wD/AP+gvaeTAAADR0lEQVR4nO2bO28UMRSFPy1o2RBCaFAeIETFq6FAECKgAol/BRISaUJISUVHR48Ef2CjrVGUJTQ8sgskoSESIQtZCtsKWrHjO7bHniRzJMur0bXv9Rn7zB17FipUiIljwCKwCfQt5SswBxxJEmlBeI594INlLkmkBeAesAtsA3cE9re0bQ+4XmBcUXAceI+6ow9ytHuo2ywDjQLiioZ51EBWUDogRR14q9s+KiCuKLgK7AB/gNsO7Wd02x5wLWBcudFAKXiX/EKWqnSApwRaPoslGJBrWQhBgLnz+0mRZ9ibCd4wbO43ZMZd8+y8BSwFvFZUn0HwPyZDX4vpB/CfAfseRz3bt1DpbahrRfUZBIdeBLu6vuEVTlzc1HU300qIBdInNK5lPgQBDU1CpwQDkpYO8IR8L2AitLWDC6E7DoCLqNhWJMauj8E1XZ9xbF8kTExrmVYargSY3LrMBIjy/2oGODo59ASY6TUtsH0BvLHYSF5ingEvBf6mdB3k2T8MsyilbQpsP2jbeoaNJMvcQG2t2dDUfc0KbKMsgS1dn3D0ZTAG/BDYndX1Z0mnrgR0US8dU9hPbkzQY46+QCUydewE1IBJHdsXSceuBPSAddTb5GmLbQgCTFsbARM6pm+oGK3w2Q+Q5gJmCYQgYCvTKmcOAH4ESHUgxAww+mGbAbkegRCXAB8RlC6BqARIl0BMDSjlEgipAaWaATE1IK8IRiXAlg6H0ACpCJpYKg2QduxDwCbwEzgFjGbYxSJgFBjXMX2Xdux7MGLeuLKWQaxEKPfdB38CJEIYKxHKLYAQl4CiE6EkBEiEMJYGHOglUNoZICFgG/hNPBEs3RIAFXgsEcy1BHyPx6XZYJPsPUHbsfYqaovrV4aN2QwN8j2QFA1U4Duk/diipmPYJcEXpRuoXdiJ2I7/waSOYT1vwxB3rQyHJE4CCGEIKMM5oZMAQjUDCiWghfuHDUuWfgaP0cxTKMkM+KTrSwPXfT6o6g/5Peya8f3Rw6czrqAC2gLOJ/B/DpUg9YHLCfwD8FoH0AbuAyMRfI4Ad1H/JukDryL4HIpp4B3pPoZqs5cJJsM46h9eq6hzuaIH3dO+HgMnI4yvQoUKFSocOPwFaSUIUcsaHeoAAAAASUVORK5CYII="/>
+						    </div>
+						</div>		<div class="date">
+							<span class="startDate">
+								2011-06-01
+							</span>
+							<span class="endDate">
+								- 2014-01-01
+							</span>
+						</div>
+						<div class="institution">
+							University of Oklahoma
+						</div>
+						<div class="area">
+							Information Technology
+						</div>
+						<div class="studyType">
+							Bachelor
+						</div>
+						<div class="gpa">
+							GPA: 4.0
+						</div>
+						<ul class="courses">
+							<li>DB1101 - Basic SQL</li>
+							<li>CS2011 - Java Introduction</li>
+						</ul>
+					</div>
+					<div class="nav-add" onclick="window.dispatchEvent(new CustomEvent('add', { detail: { categoryKey:  'SKILL'}}))">
+					    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAABmJLR0QA/wD/AP+gvaeTAAABmklEQVR4nO3cwUoDMRRA0YeL/pP1+7T6f126tN35DbqYKdYRoU3SlzvpPRAKxZEwV1MYHo2QJEmSJEmS1NImIt4i4hgRX1euQ0Ts5t+hRl7j+hDL9ZK+64EdYrqpjwXXbuPnP0WNnP7Ke12f5qH3BvTbqEHee29gdNceOcuf9chSGYPAGATGIDAGgTEIjEFgDAJjEBiDwBgExiAwBoExCIxBYAwCYxAYg8AYBMYgMAaBMQhMSZCawefS1UrWflMHvFsMPt86zH9zWdkrZcC7ZvA5S++huNQB7zVMARL2V3Sf/FCHGTXIZ1x+zu/PrttXXHP+Xqo1HFkEHlkjMAiMQWAMAmMQGIPAGATGIDAlQY7z67blRgbzNL+mPFzcBf/x+1Kv/T5X7Plim5iinB7DG+Tv+ogpxrDfQNQqCJ4f6jAGgTEIjEFgDAJjEBiDwBgExiAwBoExCIxBYAwCYxAYg8AYBMYgMAaBMQiMQWAMAmMQGIPAGATGIDBrCVIz4J06+HwvWgx4pww+34uaAe/hB58lSZIkSZKkHr4BY+pp6zwMxEMAAAAASUVORK5CYII="/>
+					</i></div></section>				<section class="sheet" id="awards">
+				</section>				<section class="sheet" id="publications">
+					<h2>Veröffentlichungen</h2>
+					<div class="item content">
+						<div class="item-nav">
+						    <div class="item-nav-item" onclick="window.dispatchEvent(new CustomEvent('edit', { detail: { categoryKey:  'PUBLICATION', id: ''}}))">
+						        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABmJLR0QA/wD/AP+gvaeTAAAEoUlEQVR4nO3bTahUdRjH8c/1XisLKg0rgqyFUlGpJWTRhcQICiujTRsRijYtrEUKtkgUWkSlvVBUUJEWqEFoYfZmEvSKURtXZUWLqNQssUwlcVo853DOnXtm7rkzc52X5geHmfN//ufwfJ//y/k//zNDX339rzXQbgea0DwMYwq+wk5U2urRSdIgnhew+eMjnNVGv06KBrFBAB/B03gEe5OyL/VwECZhvQD9GwtytgvxfWL7GtNOtnMTrUl4VTF8qp4LwhJswypZyx8SE18tzcAPemA4LDd6kqvV8tXq+p6wUjh/HGtwIDnfgckl79G1PSGFr2BFUna1LAhv6uEg5OErWJaz9XwQquE/FCu8vFoRhJ3iidJRWiYb85vxspHwp+DU5HszQfgtue725l1unSbhL5zA0gL7DOwRs3qatzQahNXJNY9VO9BOnRDP9gHMrbKdj48xE7/IEp1vcBP+wJ3YpFwQzk4+jzXl8QRoo2zsr8uVL1Z/8hpPTxgWuUMF1zXvcuv0uHDqGI4aGYQB3IDTc/Wni7XBRcl5mSAMi2FWwQutdb855eEXY5HRQcjrXOxO7Ktz5fWCMCyGWEVkkYOtBGhGTxgJn6peEN5PyneLnpBXURC6Dj5VrSCswnuiJxQpH4QdugC+3vN4rOFATIyfiEVO0Tqh4+DXKgefql4QzhBPh4pYJ+THfT4IDzfncus0XvhUtYKwICn7USyWqrUmsW9rwNeWKw9/WwPXFwVhQATyvFy9Kbhf7CUcT+ovaczl1mmd+vDX4ANcO8Z9xpoTpogEKp9QPdSYy63TWPDzcTCp80CJ+9ULwis6DP5JGfytBfY8/CYMlbxvrSBs1iHwAzL4o4rhZ2gMPlV1EJbKxnzHwxPZ3SG8ZvzwcDn2G71p2nb4p9SHP1NsbtB4Gn6F7C3Qp/hZBHNZvYsmWtXwiwrqzMefYkuqUeXht8tWf23d0ygLn475FwvsQ2KXZkWBLVUe/h0ZfFs1IF5OloUvmvCGkvJ0VVekjoevtbydJ7atKnjDaPhBvJ7YD4pgVetS/JrUeRentcD3plUNX7TIaQX8ZfrwffiOgn9GH35C4WfLVnjb9eHbrz68iYefowPh4VHh1BHcXGDPr/A2qr/CKwP/tixRartmipeWleTzOwG5HAuTo2fhiY3Eisje/jE6706PjUbvuXc9PDwonFsrgGbjbjyLXYltr8bg5+L3pM5bOhCebPyvLLAN4rAYGtOqysc74XVEVlekl4ST99awf5HY7xM/OuiZlk+1VTh6Rw17mg+kk+Q+5eG36nB4+Ew4e30N+wViF+hzIyfJhQV1r9Jl8PCtcPiSEnWHxJ8VigLQlfDE46+CqSXrP5fUz+/p5bt9x2xjldFk2SJodslr7pHt+REtn76e3qKLWh5mycb0PlxZ4po5Sf09Rrb8Nl3U8qluMXK1VyYIk0XOcEKWHG1R/geMbVX1On5W1fl08WekG8VbmHOSY1rV98Mik5sq4O/CvxPm9QQqTYEbPTbokpZPVd0DLq5T95Do4vuTzwPJkZbtEo/ErlJ1ANaLzZCfZD9S3pOcd2WX7quvvurqP6t3OXxBZgxRAAAAAElFTkSuQmCC"/>
+						    </div>
+						    <div class="item-nav-item" onclick="window.dispatchEvent(new CustomEvent('delete', { detail: {categoryKey: 'PUBLICATION', id: ''}}))">
+						        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABmJLR0QA/wD/AP+gvaeTAAADR0lEQVR4nO2bO28UMRSFPy1o2RBCaFAeIETFq6FAECKgAol/BRISaUJISUVHR48Ef2CjrVGUJTQ8sgskoSESIQtZCtsKWrHjO7bHniRzJMur0bXv9Rn7zB17FipUiIljwCKwCfQt5SswBxxJEmlBeI594INlLkmkBeAesAtsA3cE9re0bQ+4XmBcUXAceI+6ow9ytHuo2ywDjQLiioZ51EBWUDogRR14q9s+KiCuKLgK7AB/gNsO7Wd02x5wLWBcudFAKXiX/EKWqnSApwRaPoslGJBrWQhBgLnz+0mRZ9ibCd4wbO43ZMZd8+y8BSwFvFZUn0HwPyZDX4vpB/CfAfseRz3bt1DpbahrRfUZBIdeBLu6vuEVTlzc1HU300qIBdInNK5lPgQBDU1CpwQDkpYO8IR8L2AitLWDC6E7DoCLqNhWJMauj8E1XZ9xbF8kTExrmVYargSY3LrMBIjy/2oGODo59ASY6TUtsH0BvLHYSF5ingEvBf6mdB3k2T8MsyilbQpsP2jbeoaNJMvcQG2t2dDUfc0KbKMsgS1dn3D0ZTAG/BDYndX1Z0mnrgR0US8dU9hPbkzQY46+QCUydewE1IBJHdsXSceuBPSAddTb5GmLbQgCTFsbARM6pm+oGK3w2Q+Q5gJmCYQgYCvTKmcOAH4ESHUgxAww+mGbAbkegRCXAB8RlC6BqARIl0BMDSjlEgipAaWaATE1IK8IRiXAlg6H0ACpCJpYKg2QduxDwCbwEzgFjGbYxSJgFBjXMX2Xdux7MGLeuLKWQaxEKPfdB38CJEIYKxHKLYAQl4CiE6EkBEiEMJYGHOglUNoZICFgG/hNPBEs3RIAFXgsEcy1BHyPx6XZYJPsPUHbsfYqaovrV4aN2QwN8j2QFA1U4Duk/diipmPYJcEXpRuoXdiJ2I7/waSOYT1vwxB3rQyHJE4CCGEIKMM5oZMAQjUDCiWghfuHDUuWfgaP0cxTKMkM+KTrSwPXfT6o6g/5Peya8f3Rw6czrqAC2gLOJ/B/DpUg9YHLCfwD8FoH0AbuAyMRfI4Ad1H/JukDryL4HIpp4B3pPoZqs5cJJsM46h9eq6hzuaIH3dO+HgMnI4yvQoUKFSocOPwFaSUIUcsaHeoAAAAASUVORK5CYII="/>
+						    </div>
+						</div>		<div class="name">
+							Video compression for 3d media
+						</div>
+						<div class="publisher">
+							Hooli
+						</div>
+						<div class="releaseDate">
+							2014-10-01
+						</div>
+						<div class="website">
+							<a href="http://en.wikipedia.org/wiki/Silicon_Valley_(TV_series)">Link</a>
+						</div>
+						<div class="summary">
+							<p>Innovative middle-out compression algorithm that changes the way we store data.</p>
 						</div>
 					</div>
-					<div class="item">
-						<strong class="network">
-							SoundCloud
-						</strong>
-						<div class="username">
-							dandymusicnl
+					<div class="item content">
+						<div class="item-nav">
+						    <div class="item-nav-item" onclick="window.dispatchEvent(new CustomEvent('edit', { detail: { categoryKey:  'PUBLICATION', id: ''}}))">
+						        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABmJLR0QA/wD/AP+gvaeTAAAEoUlEQVR4nO3bTahUdRjH8c/1XisLKg0rgqyFUlGpJWTRhcQICiujTRsRijYtrEUKtkgUWkSlvVBUUJEWqEFoYfZmEvSKURtXZUWLqNQssUwlcVo853DOnXtm7rkzc52X5geHmfN//ufwfJ//y/k//zNDX339rzXQbgea0DwMYwq+wk5U2urRSdIgnhew+eMjnNVGv06KBrFBAB/B03gEe5OyL/VwECZhvQD9GwtytgvxfWL7GtNOtnMTrUl4VTF8qp4LwhJswypZyx8SE18tzcAPemA4LDd6kqvV8tXq+p6wUjh/HGtwIDnfgckl79G1PSGFr2BFUna1LAhv6uEg5OErWJaz9XwQquE/FCu8vFoRhJ3iidJRWiYb85vxspHwp+DU5HszQfgtue725l1unSbhL5zA0gL7DOwRs3qatzQahNXJNY9VO9BOnRDP9gHMrbKdj48xE7/IEp1vcBP+wJ3YpFwQzk4+jzXl8QRoo2zsr8uVL1Z/8hpPTxgWuUMF1zXvcuv0uHDqGI4aGYQB3IDTc/Wni7XBRcl5mSAMi2FWwQutdb855eEXY5HRQcjrXOxO7Ktz5fWCMCyGWEVkkYOtBGhGTxgJn6peEN5PyneLnpBXURC6Dj5VrSCswnuiJxQpH4QdugC+3vN4rOFATIyfiEVO0Tqh4+DXKgefql4QzhBPh4pYJ+THfT4IDzfncus0XvhUtYKwICn7USyWqrUmsW9rwNeWKw9/WwPXFwVhQATyvFy9Kbhf7CUcT+ovaczl1mmd+vDX4ANcO8Z9xpoTpogEKp9QPdSYy63TWPDzcTCp80CJ+9ULwis6DP5JGfytBfY8/CYMlbxvrSBs1iHwAzL4o4rhZ2gMPlV1EJbKxnzHwxPZ3SG8ZvzwcDn2G71p2nb4p9SHP1NsbtB4Gn6F7C3Qp/hZBHNZvYsmWtXwiwrqzMefYkuqUeXht8tWf23d0ygLn475FwvsQ2KXZkWBLVUe/h0ZfFs1IF5OloUvmvCGkvJ0VVekjoevtbydJ7atKnjDaPhBvJ7YD4pgVetS/JrUeRentcD3plUNX7TIaQX8ZfrwffiOgn9GH35C4WfLVnjb9eHbrz68iYefowPh4VHh1BHcXGDPr/A2qr/CKwP/tixRartmipeWleTzOwG5HAuTo2fhiY3Eisje/jE6706PjUbvuXc9PDwonFsrgGbjbjyLXYltr8bg5+L3pM5bOhCebPyvLLAN4rAYGtOqysc74XVEVlekl4ST99awf5HY7xM/OuiZlk+1VTh6Rw17mg+kk+Q+5eG36nB4+Ew4e30N+wViF+hzIyfJhQV1r9Jl8PCtcPiSEnWHxJ8VigLQlfDE46+CqSXrP5fUz+/p5bt9x2xjldFk2SJodslr7pHt+REtn76e3qKLWh5mycb0PlxZ4po5Sf09Rrb8Nl3U8qluMXK1VyYIk0XOcEKWHG1R/geMbVX1On5W1fl08WekG8VbmHOSY1rV98Mik5sq4O/CvxPm9QQqTYEbPTbokpZPVd0DLq5T95Do4vuTzwPJkZbtEo/ErlJ1ANaLzZCfZD9S3pOcd2WX7quvvurqP6t3OXxBZgxRAAAAAElFTkSuQmCC"/>
+						    </div>
+						    <div class="item-nav-item" onclick="window.dispatchEvent(new CustomEvent('delete', { detail: {categoryKey: 'PUBLICATION', id: ''}}))">
+						        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABmJLR0QA/wD/AP+gvaeTAAADR0lEQVR4nO2bO28UMRSFPy1o2RBCaFAeIETFq6FAECKgAol/BRISaUJISUVHR48Ef2CjrVGUJTQ8sgskoSESIQtZCtsKWrHjO7bHniRzJMur0bXv9Rn7zB17FipUiIljwCKwCfQt5SswBxxJEmlBeI594INlLkmkBeAesAtsA3cE9re0bQ+4XmBcUXAceI+6ow9ytHuo2ywDjQLiioZ51EBWUDogRR14q9s+KiCuKLgK7AB/gNsO7Wd02x5wLWBcudFAKXiX/EKWqnSApwRaPoslGJBrWQhBgLnz+0mRZ9ibCd4wbO43ZMZd8+y8BSwFvFZUn0HwPyZDX4vpB/CfAfseRz3bt1DpbahrRfUZBIdeBLu6vuEVTlzc1HU300qIBdInNK5lPgQBDU1CpwQDkpYO8IR8L2AitLWDC6E7DoCLqNhWJMauj8E1XZ9xbF8kTExrmVYargSY3LrMBIjy/2oGODo59ASY6TUtsH0BvLHYSF5ingEvBf6mdB3k2T8MsyilbQpsP2jbeoaNJMvcQG2t2dDUfc0KbKMsgS1dn3D0ZTAG/BDYndX1Z0mnrgR0US8dU9hPbkzQY46+QCUydewE1IBJHdsXSceuBPSAddTb5GmLbQgCTFsbARM6pm+oGK3w2Q+Q5gJmCYQgYCvTKmcOAH4ESHUgxAww+mGbAbkegRCXAB8RlC6BqARIl0BMDSjlEgipAaWaATE1IK8IRiXAlg6H0ACpCJpYKg2QduxDwCbwEzgFjGbYxSJgFBjXMX2Xdux7MGLeuLKWQaxEKPfdB38CJEIYKxHKLYAQl4CiE6EkBEiEMJYGHOglUNoZICFgG/hNPBEs3RIAFXgsEcy1BHyPx6XZYJPsPUHbsfYqaovrV4aN2QwN8j2QFA1U4Duk/diipmPYJcEXpRuoXdiJ2I7/waSOYT1vwxB3rQyHJE4CCGEIKMM5oZMAQjUDCiWghfuHDUuWfgaP0cxTKMkM+KTrSwPXfT6o6g/5Peya8f3Rw6czrqAC2gLOJ/B/DpUg9YHLCfwD8FoH0AbuAyMRfI4Ad1H/JukDryL4HIpp4B3pPoZqs5cJJsM46h9eq6hzuaIH3dO+HgMnI4yvQoUKFSocOPwFaSUIUcsaHeoAAAAASUVORK5CYII="/>
+						    </div>
+						</div>		<div class="name">
+							Video compression for 3d media
 						</div>
-						<div class="url">
-							<a href="https://soundcloud.com/dandymusicnl">Link</a>
+						<div class="publisher">
+							Hooli
+						</div>
+						<div class="releaseDate">
+							2014-10-01
+						</div>
+						<div class="website">
+							<a href="http://en.wikipedia.org/wiki/Silicon_Valley_(TV_series)">Link</a>
+						</div>
+						<div class="summary">
+							<p>Innovative middle-out compression algorithm that changes the way we store data.</p>
 						</div>
 					</div>
-				</section>
-			</section>
-		<section id="work">
-			<h2>Work</h2>
-			<div class="item">
-				<h3 class="name">
-					Pied Piper
-				</h3>
-				<div class="date">
-					<span class="startDate">
-						2013-12-01
-					</span>
-					<span class="endDate">
-						- 2014-12-01
-					</span>
-				</div>
-				<div class="position">
-					CEO/President
-				</div>
-				<div class="website">
-					<a href="http://piedpiper.com">http://piedpiper.com</a>
-				</div>
-				<div class="summary">
-					<p>Pied Piper is a multi-platform technology based on a proprietary universal compression algorithm that has consistently fielded high Weisman Scores™ that are not merely competitive, but approach the theoretical limit of lossless compression.</p>
-				</div>
-				<ul class="highlights">
-					<li>Build an algorithm for artist to detect if their music was violating copy right infringement laws</li>
-					<li>Successfully won Techcrunch Disrupt</li>
-					<li>Optimized an algorithm that holds the current world record for Weisman Scores</li>
-				</ul>
-			</div>
-		</section>
-		<section id="volunteer">
-			<h2>Volunteer</h2>
-			<div class="item">
-				<h3 class="company">
-					CoderDojo
-				</h3>
-				<div class="date">
-					<span class="startDate">
-						2012-01-01
-					</span>
-					<span class="endDate">
-						- 2013-01-01
-					</span>
-				</div>
-				<div class="position">
-					Teacher
-				</div>
-				<div class="website">
-					<a href="http://coderdojo.com/">http://coderdojo.com/</a>
-				</div>
-				<div class="summary">
-					<p>Global movement of free coding clubs for young people.</p>
-				</div>
-				<ul class="highlights">
-					<li>Awarded &#x27;Teacher of the Month&#x27;</li>
-				</ul>
-			</div>
-		</section>
-		<section id="education">
-			<h2>Education</h2>
-			<div class="item">
-				<div class="date">
-					<span class="startDate">
-						2011-06-01
-					</span>
-					<span class="endDate">
-						- 2014-01-01
-					</span>
-				</div>
-				<div class="institution">
-					University of Oklahoma
-				</div>
-				<div class="area">
-					Information Technology
-				</div>
-				<div class="studyType">
-					Bachelor
-				</div>
-				<div class="gpa">
-					GPA: 4.0
-				</div>
-				<ul class="courses">
-					<li>DB1101 - Basic SQL</li>
-					<li>CS2011 - Java Introduction</li>
-				</ul>
-			</div>
-		</section>
-		<section id="awards">
-			<h2>Awards</h2>
-			<div class="item">
-				<div class="title">
-					Digital Compression Pioneer Award
-				</div>
-				<div class="date">
-					2014-11-01
-				</div>
-				<div class="awarder">
-					Techcrunch
-				</div>
-				<div class="summary">
-					<p>There is no spoon.</p>
-				</div>
-			</div>
-		</section>
-		<section id="publications">
-			<h2>Publications</h2>
-			<div class="item">
-				<div class="name">
-					Video compression for 3d media
-				</div>
-				<div class="publisher">
-					Hooli
-				</div>
-				<div class="releaseDate">
-					2014-10-01
-				</div>
-				<div class="website">
-					<a href="http://en.wikipedia.org/wiki/Silicon_Valley_(TV_series)">Link</a>
-				</div>
-				<div class="summary">
-					<p>Innovative middle-out compression algorithm that changes the way we store data.</p>
-				</div>
-			</div>
-		</section>
-		<section id="skills">
-			<h2>Skills</h2>
-			<div class="item">
-				<div class="name">
-					Web Development
-				</div>
-				<div class="level">
-					<em>Master</em>
-				</div>
-				<ul class="keywords">
-					<li>HTML</li>
-					<li>CSS</li>
-					<li>Javascript</li>
-				</ul>
-			</div>
-			<div class="item">
-				<div class="name">
-					Compression
-				</div>
-				<div class="level">
-					<em>Master</em>
-				</div>
-				<ul class="keywords">
-					<li>Mpeg</li>
-					<li>MP4</li>
-					<li>GIF</li>
-				</ul>
-			</div>
-		</section>
-		<section id="languages">
-			<h2>Languages</h2>
-			<div class="item">
-				<div class="language">
-					English
-				</div>
-				<div class="fluency">
-					<em>Native speaker</em>
-				</div>
-			</div>
-		</section>
-		<section id="interests">
-			<h2>Interests</h2>
-			<div class="item">
-				<div class="name">
-					Wildlife
-				</div>
-				<ul class="keywords">
-					<li>Ferrets</li>
-					<li>Unicorns</li>
-				</ul>
-			</div>
-		</section>
-		<section id="references">
-			<h2>References</h2>
-			<div class="item">
-				<blockquote class="reference">
-					It is my pleasure to recommend Richard, his performance working as a consultant for Main St. Company proved that he will be a valuable addition to any company.
-				</blockquote>
-				<div class="name">
-					— Erlich Bachman
-				</div>
-			</div>
-		</section>
+					<div class="item content">
+						<div class="item-nav">
+						    <div class="item-nav-item" onclick="window.dispatchEvent(new CustomEvent('edit', { detail: { categoryKey:  'PUBLICATION', id: ''}}))">
+						        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABmJLR0QA/wD/AP+gvaeTAAAEoUlEQVR4nO3bTahUdRjH8c/1XisLKg0rgqyFUlGpJWTRhcQICiujTRsRijYtrEUKtkgUWkSlvVBUUJEWqEFoYfZmEvSKURtXZUWLqNQssUwlcVo853DOnXtm7rkzc52X5geHmfN//ufwfJ//y/k//zNDX339rzXQbgea0DwMYwq+wk5U2urRSdIgnhew+eMjnNVGv06KBrFBAB/B03gEe5OyL/VwECZhvQD9GwtytgvxfWL7GtNOtnMTrUl4VTF8qp4LwhJswypZyx8SE18tzcAPemA4LDd6kqvV8tXq+p6wUjh/HGtwIDnfgckl79G1PSGFr2BFUna1LAhv6uEg5OErWJaz9XwQquE/FCu8vFoRhJ3iidJRWiYb85vxspHwp+DU5HszQfgtue725l1unSbhL5zA0gL7DOwRs3qatzQahNXJNY9VO9BOnRDP9gHMrbKdj48xE7/IEp1vcBP+wJ3YpFwQzk4+jzXl8QRoo2zsr8uVL1Z/8hpPTxgWuUMF1zXvcuv0uHDqGI4aGYQB3IDTc/Wni7XBRcl5mSAMi2FWwQutdb855eEXY5HRQcjrXOxO7Ktz5fWCMCyGWEVkkYOtBGhGTxgJn6peEN5PyneLnpBXURC6Dj5VrSCswnuiJxQpH4QdugC+3vN4rOFATIyfiEVO0Tqh4+DXKgefql4QzhBPh4pYJ+THfT4IDzfncus0XvhUtYKwICn7USyWqrUmsW9rwNeWKw9/WwPXFwVhQATyvFy9Kbhf7CUcT+ovaczl1mmd+vDX4ANcO8Z9xpoTpogEKp9QPdSYy63TWPDzcTCp80CJ+9ULwis6DP5JGfytBfY8/CYMlbxvrSBs1iHwAzL4o4rhZ2gMPlV1EJbKxnzHwxPZ3SG8ZvzwcDn2G71p2nb4p9SHP1NsbtB4Gn6F7C3Qp/hZBHNZvYsmWtXwiwrqzMefYkuqUeXht8tWf23d0ygLn475FwvsQ2KXZkWBLVUe/h0ZfFs1IF5OloUvmvCGkvJ0VVekjoevtbydJ7atKnjDaPhBvJ7YD4pgVetS/JrUeRentcD3plUNX7TIaQX8ZfrwffiOgn9GH35C4WfLVnjb9eHbrz68iYefowPh4VHh1BHcXGDPr/A2qr/CKwP/tixRartmipeWleTzOwG5HAuTo2fhiY3Eisje/jE6706PjUbvuXc9PDwonFsrgGbjbjyLXYltr8bg5+L3pM5bOhCebPyvLLAN4rAYGtOqysc74XVEVlekl4ST99awf5HY7xM/OuiZlk+1VTh6Rw17mg+kk+Q+5eG36nB4+Ew4e30N+wViF+hzIyfJhQV1r9Jl8PCtcPiSEnWHxJ8VigLQlfDE46+CqSXrP5fUz+/p5bt9x2xjldFk2SJodslr7pHt+REtn76e3qKLWh5mycb0PlxZ4po5Sf09Rrb8Nl3U8qluMXK1VyYIk0XOcEKWHG1R/geMbVX1On5W1fl08WekG8VbmHOSY1rV98Mik5sq4O/CvxPm9QQqTYEbPTbokpZPVd0DLq5T95Do4vuTzwPJkZbtEo/ErlJ1ANaLzZCfZD9S3pOcd2WX7quvvurqP6t3OXxBZgxRAAAAAElFTkSuQmCC"/>
+						    </div>
+						    <div class="item-nav-item" onclick="window.dispatchEvent(new CustomEvent('delete', { detail: {categoryKey: 'PUBLICATION', id: ''}}))">
+						        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABmJLR0QA/wD/AP+gvaeTAAADR0lEQVR4nO2bO28UMRSFPy1o2RBCaFAeIETFq6FAECKgAol/BRISaUJISUVHR48Ef2CjrVGUJTQ8sgskoSESIQtZCtsKWrHjO7bHniRzJMur0bXv9Rn7zB17FipUiIljwCKwCfQt5SswBxxJEmlBeI594INlLkmkBeAesAtsA3cE9re0bQ+4XmBcUXAceI+6ow9ytHuo2ywDjQLiioZ51EBWUDogRR14q9s+KiCuKLgK7AB/gNsO7Wd02x5wLWBcudFAKXiX/EKWqnSApwRaPoslGJBrWQhBgLnz+0mRZ9ibCd4wbO43ZMZd8+y8BSwFvFZUn0HwPyZDX4vpB/CfAfseRz3bt1DpbahrRfUZBIdeBLu6vuEVTlzc1HU300qIBdInNK5lPgQBDU1CpwQDkpYO8IR8L2AitLWDC6E7DoCLqNhWJMauj8E1XZ9xbF8kTExrmVYargSY3LrMBIjy/2oGODo59ASY6TUtsH0BvLHYSF5ingEvBf6mdB3k2T8MsyilbQpsP2jbeoaNJMvcQG2t2dDUfc0KbKMsgS1dn3D0ZTAG/BDYndX1Z0mnrgR0US8dU9hPbkzQY46+QCUydewE1IBJHdsXSceuBPSAddTb5GmLbQgCTFsbARM6pm+oGK3w2Q+Q5gJmCYQgYCvTKmcOAH4ESHUgxAww+mGbAbkegRCXAB8RlC6BqARIl0BMDSjlEgipAaWaATE1IK8IRiXAlg6H0ACpCJpYKg2QduxDwCbwEzgFjGbYxSJgFBjXMX2Xdux7MGLeuLKWQaxEKPfdB38CJEIYKxHKLYAQl4CiE6EkBEiEMJYGHOglUNoZICFgG/hNPBEs3RIAFXgsEcy1BHyPx6XZYJPsPUHbsfYqaovrV4aN2QwN8j2QFA1U4Duk/diipmPYJcEXpRuoXdiJ2I7/waSOYT1vwxB3rQyHJE4CCGEIKMM5oZMAQjUDCiWghfuHDUuWfgaP0cxTKMkM+KTrSwPXfT6o6g/5Peya8f3Rw6czrqAC2gLOJ/B/DpUg9YHLCfwD8FoH0AbuAyMRfI4Ad1H/JukDryL4HIpp4B3pPoZqs5cJJsM46h9eq6hzuaIH3dO+HgMnI4yvQoUKFSocOPwFaSUIUcsaHeoAAAAASUVORK5CYII="/>
+						    </div>
+						</div>		<div class="name">
+							Video compression for 3d media
+						</div>
+						<div class="publisher">
+							Hooli
+						</div>
+						<div class="releaseDate">
+							2014-10-01
+						</div>
+						<div class="website">
+							<a href="http://en.wikipedia.org/wiki/Silicon_Valley_(TV_series)">Link</a>
+						</div>
+						<div class="summary">
+							<p>Innovative middle-out compression algorithm that changes the way we store data.</p>
+						</div>
+					</div>
+					<div class="item content">
+						<div class="item-nav">
+						    <div class="item-nav-item" onclick="window.dispatchEvent(new CustomEvent('edit', { detail: { categoryKey:  'PUBLICATION', id: ''}}))">
+						        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABmJLR0QA/wD/AP+gvaeTAAAEoUlEQVR4nO3bTahUdRjH8c/1XisLKg0rgqyFUlGpJWTRhcQICiujTRsRijYtrEUKtkgUWkSlvVBUUJEWqEFoYfZmEvSKURtXZUWLqNQssUwlcVo853DOnXtm7rkzc52X5geHmfN//ufwfJ//y/k//zNDX339rzXQbgea0DwMYwq+wk5U2urRSdIgnhew+eMjnNVGv06KBrFBAB/B03gEe5OyL/VwECZhvQD9GwtytgvxfWL7GtNOtnMTrUl4VTF8qp4LwhJswypZyx8SE18tzcAPemA4LDd6kqvV8tXq+p6wUjh/HGtwIDnfgckl79G1PSGFr2BFUna1LAhv6uEg5OErWJaz9XwQquE/FCu8vFoRhJ3iidJRWiYb85vxspHwp+DU5HszQfgtue725l1unSbhL5zA0gL7DOwRs3qatzQahNXJNY9VO9BOnRDP9gHMrbKdj48xE7/IEp1vcBP+wJ3YpFwQzk4+jzXl8QRoo2zsr8uVL1Z/8hpPTxgWuUMF1zXvcuv0uHDqGI4aGYQB3IDTc/Wni7XBRcl5mSAMi2FWwQutdb855eEXY5HRQcjrXOxO7Ktz5fWCMCyGWEVkkYOtBGhGTxgJn6peEN5PyneLnpBXURC6Dj5VrSCswnuiJxQpH4QdugC+3vN4rOFATIyfiEVO0Tqh4+DXKgefql4QzhBPh4pYJ+THfT4IDzfncus0XvhUtYKwICn7USyWqrUmsW9rwNeWKw9/WwPXFwVhQATyvFy9Kbhf7CUcT+ovaczl1mmd+vDX4ANcO8Z9xpoTpogEKp9QPdSYy63TWPDzcTCp80CJ+9ULwis6DP5JGfytBfY8/CYMlbxvrSBs1iHwAzL4o4rhZ2gMPlV1EJbKxnzHwxPZ3SG8ZvzwcDn2G71p2nb4p9SHP1NsbtB4Gn6F7C3Qp/hZBHNZvYsmWtXwiwrqzMefYkuqUeXht8tWf23d0ygLn475FwvsQ2KXZkWBLVUe/h0ZfFs1IF5OloUvmvCGkvJ0VVekjoevtbydJ7atKnjDaPhBvJ7YD4pgVetS/JrUeRentcD3plUNX7TIaQX8ZfrwffiOgn9GH35C4WfLVnjb9eHbrz68iYefowPh4VHh1BHcXGDPr/A2qr/CKwP/tixRartmipeWleTzOwG5HAuTo2fhiY3Eisje/jE6706PjUbvuXc9PDwonFsrgGbjbjyLXYltr8bg5+L3pM5bOhCebPyvLLAN4rAYGtOqysc74XVEVlekl4ST99awf5HY7xM/OuiZlk+1VTh6Rw17mg+kk+Q+5eG36nB4+Ew4e30N+wViF+hzIyfJhQV1r9Jl8PCtcPiSEnWHxJ8VigLQlfDE46+CqSXrP5fUz+/p5bt9x2xjldFk2SJodslr7pHt+REtn76e3qKLWh5mycb0PlxZ4po5Sf09Rrb8Nl3U8qluMXK1VyYIk0XOcEKWHG1R/geMbVX1On5W1fl08WekG8VbmHOSY1rV98Mik5sq4O/CvxPm9QQqTYEbPTbokpZPVd0DLq5T95Do4vuTzwPJkZbtEo/ErlJ1ANaLzZCfZD9S3pOcd2WX7quvvurqP6t3OXxBZgxRAAAAAElFTkSuQmCC"/>
+						    </div>
+						    <div class="item-nav-item" onclick="window.dispatchEvent(new CustomEvent('delete', { detail: {categoryKey: 'PUBLICATION', id: ''}}))">
+						        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABmJLR0QA/wD/AP+gvaeTAAADR0lEQVR4nO2bO28UMRSFPy1o2RBCaFAeIETFq6FAECKgAol/BRISaUJISUVHR48Ef2CjrVGUJTQ8sgskoSESIQtZCtsKWrHjO7bHniRzJMur0bXv9Rn7zB17FipUiIljwCKwCfQt5SswBxxJEmlBeI594INlLkmkBeAesAtsA3cE9re0bQ+4XmBcUXAceI+6ow9ytHuo2ywDjQLiioZ51EBWUDogRR14q9s+KiCuKLgK7AB/gNsO7Wd02x5wLWBcudFAKXiX/EKWqnSApwRaPoslGJBrWQhBgLnz+0mRZ9ibCd4wbO43ZMZd8+y8BSwFvFZUn0HwPyZDX4vpB/CfAfseRz3bt1DpbahrRfUZBIdeBLu6vuEVTlzc1HU300qIBdInNK5lPgQBDU1CpwQDkpYO8IR8L2AitLWDC6E7DoCLqNhWJMauj8E1XZ9xbF8kTExrmVYargSY3LrMBIjy/2oGODo59ASY6TUtsH0BvLHYSF5ingEvBf6mdB3k2T8MsyilbQpsP2jbeoaNJMvcQG2t2dDUfc0KbKMsgS1dn3D0ZTAG/BDYndX1Z0mnrgR0US8dU9hPbkzQY46+QCUydewE1IBJHdsXSceuBPSAddTb5GmLbQgCTFsbARM6pm+oGK3w2Q+Q5gJmCYQgYCvTKmcOAH4ESHUgxAww+mGbAbkegRCXAB8RlC6BqARIl0BMDSjlEgipAaWaATE1IK8IRiXAlg6H0ACpCJpYKg2QduxDwCbwEzgFjGbYxSJgFBjXMX2Xdux7MGLeuLKWQaxEKPfdB38CJEIYKxHKLYAQl4CiE6EkBEiEMJYGHOglUNoZICFgG/hNPBEs3RIAFXgsEcy1BHyPx6XZYJPsPUHbsfYqaovrV4aN2QwN8j2QFA1U4Duk/diipmPYJcEXpRuoXdiJ2I7/waSOYT1vwxB3rQyHJE4CCGEIKMM5oZMAQjUDCiWghfuHDUuWfgaP0cxTKMkM+KTrSwPXfT6o6g/5Peya8f3Rw6czrqAC2gLOJ/B/DpUg9YHLCfwD8FoH0AbuAyMRfI4Ad1H/JukDryL4HIpp4B3pPoZqs5cJJsM46h9eq6hzuaIH3dO+HgMnI4yvQoUKFSocOPwFaSUIUcsaHeoAAAAASUVORK5CYII="/>
+						    </div>
+						</div>		<div class="name">
+							Video compression for 3d media
+						</div>
+						<div class="publisher">
+							Hooli
+						</div>
+						<div class="releaseDate">
+							2014-10-01
+						</div>
+						<div class="website">
+							<a href="http://en.wikipedia.org/wiki/Silicon_Valley_(TV_series)">Link</a>
+						</div>
+						<div class="summary">
+							<p>Innovative middle-out compression algorithm that changes the way we store data.</p>
+						</div>
+					</div>
+					<div class="item content">
+						<div class="item-nav">
+						    <div class="item-nav-item" onclick="window.dispatchEvent(new CustomEvent('edit', { detail: { categoryKey:  'PUBLICATION', id: ''}}))">
+						        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABmJLR0QA/wD/AP+gvaeTAAAEoUlEQVR4nO3bTahUdRjH8c/1XisLKg0rgqyFUlGpJWTRhcQICiujTRsRijYtrEUKtkgUWkSlvVBUUJEWqEFoYfZmEvSKURtXZUWLqNQssUwlcVo853DOnXtm7rkzc52X5geHmfN//ufwfJ//y/k//zNDX339rzXQbgea0DwMYwq+wk5U2urRSdIgnhew+eMjnNVGv06KBrFBAB/B03gEe5OyL/VwECZhvQD9GwtytgvxfWL7GtNOtnMTrUl4VTF8qp4LwhJswypZyx8SE18tzcAPemA4LDd6kqvV8tXq+p6wUjh/HGtwIDnfgckl79G1PSGFr2BFUna1LAhv6uEg5OErWJaz9XwQquE/FCu8vFoRhJ3iidJRWiYb85vxspHwp+DU5HszQfgtue725l1unSbhL5zA0gL7DOwRs3qatzQahNXJNY9VO9BOnRDP9gHMrbKdj48xE7/IEp1vcBP+wJ3YpFwQzk4+jzXl8QRoo2zsr8uVL1Z/8hpPTxgWuUMF1zXvcuv0uHDqGI4aGYQB3IDTc/Wni7XBRcl5mSAMi2FWwQutdb855eEXY5HRQcjrXOxO7Ktz5fWCMCyGWEVkkYOtBGhGTxgJn6peEN5PyneLnpBXURC6Dj5VrSCswnuiJxQpH4QdugC+3vN4rOFATIyfiEVO0Tqh4+DXKgefql4QzhBPh4pYJ+THfT4IDzfncus0XvhUtYKwICn7USyWqrUmsW9rwNeWKw9/WwPXFwVhQATyvFy9Kbhf7CUcT+ovaczl1mmd+vDX4ANcO8Z9xpoTpogEKp9QPdSYy63TWPDzcTCp80CJ+9ULwis6DP5JGfytBfY8/CYMlbxvrSBs1iHwAzL4o4rhZ2gMPlV1EJbKxnzHwxPZ3SG8ZvzwcDn2G71p2nb4p9SHP1NsbtB4Gn6F7C3Qp/hZBHNZvYsmWtXwiwrqzMefYkuqUeXht8tWf23d0ygLn475FwvsQ2KXZkWBLVUe/h0ZfFs1IF5OloUvmvCGkvJ0VVekjoevtbydJ7atKnjDaPhBvJ7YD4pgVetS/JrUeRentcD3plUNX7TIaQX8ZfrwffiOgn9GH35C4WfLVnjb9eHbrz68iYefowPh4VHh1BHcXGDPr/A2qr/CKwP/tixRartmipeWleTzOwG5HAuTo2fhiY3Eisje/jE6706PjUbvuXc9PDwonFsrgGbjbjyLXYltr8bg5+L3pM5bOhCebPyvLLAN4rAYGtOqysc74XVEVlekl4ST99awf5HY7xM/OuiZlk+1VTh6Rw17mg+kk+Q+5eG36nB4+Ew4e30N+wViF+hzIyfJhQV1r9Jl8PCtcPiSEnWHxJ8VigLQlfDE46+CqSXrP5fUz+/p5bt9x2xjldFk2SJodslr7pHt+REtn76e3qKLWh5mycb0PlxZ4po5Sf09Rrb8Nl3U8qluMXK1VyYIk0XOcEKWHG1R/geMbVX1On5W1fl08WekG8VbmHOSY1rV98Mik5sq4O/CvxPm9QQqTYEbPTbokpZPVd0DLq5T95Do4vuTzwPJkZbtEo/ErlJ1ANaLzZCfZD9S3pOcd2WX7quvvurqP6t3OXxBZgxRAAAAAElFTkSuQmCC"/>
+						    </div>
+						    <div class="item-nav-item" onclick="window.dispatchEvent(new CustomEvent('delete', { detail: {categoryKey: 'PUBLICATION', id: ''}}))">
+						        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABmJLR0QA/wD/AP+gvaeTAAADR0lEQVR4nO2bO28UMRSFPy1o2RBCaFAeIETFq6FAECKgAol/BRISaUJISUVHR48Ef2CjrVGUJTQ8sgskoSESIQtZCtsKWrHjO7bHniRzJMur0bXv9Rn7zB17FipUiIljwCKwCfQt5SswBxxJEmlBeI594INlLkmkBeAesAtsA3cE9re0bQ+4XmBcUXAceI+6ow9ytHuo2ywDjQLiioZ51EBWUDogRR14q9s+KiCuKLgK7AB/gNsO7Wd02x5wLWBcudFAKXiX/EKWqnSApwRaPoslGJBrWQhBgLnz+0mRZ9ibCd4wbO43ZMZd8+y8BSwFvFZUn0HwPyZDX4vpB/CfAfseRz3bt1DpbahrRfUZBIdeBLu6vuEVTlzc1HU300qIBdInNK5lPgQBDU1CpwQDkpYO8IR8L2AitLWDC6E7DoCLqNhWJMauj8E1XZ9xbF8kTExrmVYargSY3LrMBIjy/2oGODo59ASY6TUtsH0BvLHYSF5ingEvBf6mdB3k2T8MsyilbQpsP2jbeoaNJMvcQG2t2dDUfc0KbKMsgS1dn3D0ZTAG/BDYndX1Z0mnrgR0US8dU9hPbkzQY46+QCUydewE1IBJHdsXSceuBPSAddTb5GmLbQgCTFsbARM6pm+oGK3w2Q+Q5gJmCYQgYCvTKmcOAH4ESHUgxAww+mGbAbkegRCXAB8RlC6BqARIl0BMDSjlEgipAaWaATE1IK8IRiXAlg6H0ACpCJpYKg2QduxDwCbwEzgFjGbYxSJgFBjXMX2Xdux7MGLeuLKWQaxEKPfdB38CJEIYKxHKLYAQl4CiE6EkBEiEMJYGHOglUNoZICFgG/hNPBEs3RIAFXgsEcy1BHyPx6XZYJPsPUHbsfYqaovrV4aN2QwN8j2QFA1U4Duk/diipmPYJcEXpRuoXdiJ2I7/waSOYT1vwxB3rQyHJE4CCGEIKMM5oZMAQjUDCiWghfuHDUuWfgaP0cxTKMkM+KTrSwPXfT6o6g/5Peya8f3Rw6czrqAC2gLOJ/B/DpUg9YHLCfwD8FoH0AbuAyMRfI4Ad1H/JukDryL4HIpp4B3pPoZqs5cJJsM46h9eq6hzuaIH3dO+HgMnI4yvQoUKFSocOPwFaSUIUcsaHeoAAAAASUVORK5CYII="/>
+						    </div>
+						</div>		<div class="name">
+							Video compression for 3d media
+						</div>
+						<div class="publisher">
+							Hooli
+						</div>
+						<div class="releaseDate">
+							2014-10-01
+						</div>
+						<div class="website">
+							<a href="http://en.wikipedia.org/wiki/Silicon_Valley_(TV_series)">Link</a>
+						</div>
+						<div class="summary">
+							<p>Innovative middle-out compression algorithm that changes the way we store data.</p>
+						</div>
+					</div>
+					<div class="item content">
+						<div class="item-nav">
+						    <div class="item-nav-item" onclick="window.dispatchEvent(new CustomEvent('edit', { detail: { categoryKey:  'PUBLICATION', id: ''}}))">
+						        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABmJLR0QA/wD/AP+gvaeTAAAEoUlEQVR4nO3bTahUdRjH8c/1XisLKg0rgqyFUlGpJWTRhcQICiujTRsRijYtrEUKtkgUWkSlvVBUUJEWqEFoYfZmEvSKURtXZUWLqNQssUwlcVo853DOnXtm7rkzc52X5geHmfN//ufwfJ//y/k//zNDX339rzXQbgea0DwMYwq+wk5U2urRSdIgnhew+eMjnNVGv06KBrFBAB/B03gEe5OyL/VwECZhvQD9GwtytgvxfWL7GtNOtnMTrUl4VTF8qp4LwhJswypZyx8SE18tzcAPemA4LDd6kqvV8tXq+p6wUjh/HGtwIDnfgckl79G1PSGFr2BFUna1LAhv6uEg5OErWJaz9XwQquE/FCu8vFoRhJ3iidJRWiYb85vxspHwp+DU5HszQfgtue725l1unSbhL5zA0gL7DOwRs3qatzQahNXJNY9VO9BOnRDP9gHMrbKdj48xE7/IEp1vcBP+wJ3YpFwQzk4+jzXl8QRoo2zsr8uVL1Z/8hpPTxgWuUMF1zXvcuv0uHDqGI4aGYQB3IDTc/Wni7XBRcl5mSAMi2FWwQutdb855eEXY5HRQcjrXOxO7Ktz5fWCMCyGWEVkkYOtBGhGTxgJn6peEN5PyneLnpBXURC6Dj5VrSCswnuiJxQpH4QdugC+3vN4rOFATIyfiEVO0Tqh4+DXKgefql4QzhBPh4pYJ+THfT4IDzfncus0XvhUtYKwICn7USyWqrUmsW9rwNeWKw9/WwPXFwVhQATyvFy9Kbhf7CUcT+ovaczl1mmd+vDX4ANcO8Z9xpoTpogEKp9QPdSYy63TWPDzcTCp80CJ+9ULwis6DP5JGfytBfY8/CYMlbxvrSBs1iHwAzL4o4rhZ2gMPlV1EJbKxnzHwxPZ3SG8ZvzwcDn2G71p2nb4p9SHP1NsbtB4Gn6F7C3Qp/hZBHNZvYsmWtXwiwrqzMefYkuqUeXht8tWf23d0ygLn475FwvsQ2KXZkWBLVUe/h0ZfFs1IF5OloUvmvCGkvJ0VVekjoevtbydJ7atKnjDaPhBvJ7YD4pgVetS/JrUeRentcD3plUNX7TIaQX8ZfrwffiOgn9GH35C4WfLVnjb9eHbrz68iYefowPh4VHh1BHcXGDPr/A2qr/CKwP/tixRartmipeWleTzOwG5HAuTo2fhiY3Eisje/jE6706PjUbvuXc9PDwonFsrgGbjbjyLXYltr8bg5+L3pM5bOhCebPyvLLAN4rAYGtOqysc74XVEVlekl4ST99awf5HY7xM/OuiZlk+1VTh6Rw17mg+kk+Q+5eG36nB4+Ew4e30N+wViF+hzIyfJhQV1r9Jl8PCtcPiSEnWHxJ8VigLQlfDE46+CqSXrP5fUz+/p5bt9x2xjldFk2SJodslr7pHt+REtn76e3qKLWh5mycb0PlxZ4po5Sf09Rrb8Nl3U8qluMXK1VyYIk0XOcEKWHG1R/geMbVX1On5W1fl08WekG8VbmHOSY1rV98Mik5sq4O/CvxPm9QQqTYEbPTbokpZPVd0DLq5T95Do4vuTzwPJkZbtEo/ErlJ1ANaLzZCfZD9S3pOcd2WX7quvvurqP6t3OXxBZgxRAAAAAElFTkSuQmCC"/>
+						    </div>
+						    <div class="item-nav-item" onclick="window.dispatchEvent(new CustomEvent('delete', { detail: {categoryKey: 'PUBLICATION', id: ''}}))">
+						        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABmJLR0QA/wD/AP+gvaeTAAADR0lEQVR4nO2bO28UMRSFPy1o2RBCaFAeIETFq6FAECKgAol/BRISaUJISUVHR48Ef2CjrVGUJTQ8sgskoSESIQtZCtsKWrHjO7bHniRzJMur0bXv9Rn7zB17FipUiIljwCKwCfQt5SswBxxJEmlBeI594INlLkmkBeAesAtsA3cE9re0bQ+4XmBcUXAceI+6ow9ytHuo2ywDjQLiioZ51EBWUDogRR14q9s+KiCuKLgK7AB/gNsO7Wd02x5wLWBcudFAKXiX/EKWqnSApwRaPoslGJBrWQhBgLnz+0mRZ9ibCd4wbO43ZMZd8+y8BSwFvFZUn0HwPyZDX4vpB/CfAfseRz3bt1DpbahrRfUZBIdeBLu6vuEVTlzc1HU300qIBdInNK5lPgQBDU1CpwQDkpYO8IR8L2AitLWDC6E7DoCLqNhWJMauj8E1XZ9xbF8kTExrmVYargSY3LrMBIjy/2oGODo59ASY6TUtsH0BvLHYSF5ingEvBf6mdB3k2T8MsyilbQpsP2jbeoaNJMvcQG2t2dDUfc0KbKMsgS1dn3D0ZTAG/BDYndX1Z0mnrgR0US8dU9hPbkzQY46+QCUydewE1IBJHdsXSceuBPSAddTb5GmLbQgCTFsbARM6pm+oGK3w2Q+Q5gJmCYQgYCvTKmcOAH4ESHUgxAww+mGbAbkegRCXAB8RlC6BqARIl0BMDSjlEgipAaWaATE1IK8IRiXAlg6H0ACpCJpYKg2QduxDwCbwEzgFjGbYxSJgFBjXMX2Xdux7MGLeuLKWQaxEKPfdB38CJEIYKxHKLYAQl4CiE6EkBEiEMJYGHOglUNoZICFgG/hNPBEs3RIAFXgsEcy1BHyPx6XZYJPsPUHbsfYqaovrV4aN2QwN8j2QFA1U4Duk/diipmPYJcEXpRuoXdiJ2I7/waSOYT1vwxB3rQyHJE4CCGEIKMM5oZMAQjUDCiWghfuHDUuWfgaP0cxTKMkM+KTrSwPXfT6o6g/5Peya8f3Rw6czrqAC2gLOJ/B/DpUg9YHLCfwD8FoH0AbuAyMRfI4Ad1H/JukDryL4HIpp4B3pPoZqs5cJJsM46h9eq6hzuaIH3dO+HgMnI4yvQoUKFSocOPwFaSUIUcsaHeoAAAAASUVORK5CYII="/>
+						    </div>
+						</div>		<div class="name">
+							Video compression for 3d media
+						</div>
+						<div class="publisher">
+							Hooli
+						</div>
+						<div class="releaseDate">
+							2014-10-01
+						</div>
+						<div class="website">
+							<a href="http://en.wikipedia.org/wiki/Silicon_Valley_(TV_series)">Link</a>
+						</div>
+						<div class="summary">
+							<p>Innovative middle-out compression algorithm that changes the way we store data.</p>
+						</div>
+					</div>
+					<div class="nav-add" onclick="window.dispatchEvent(new CustomEvent('add', { detail: { categoryKey:  'PUBLICATION'}}))">
+					    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAABmJLR0QA/wD/AP+gvaeTAAABmklEQVR4nO3cwUoDMRRA0YeL/pP1+7T6f126tN35DbqYKdYRoU3SlzvpPRAKxZEwV1MYHo2QJEmSJEmS1NImIt4i4hgRX1euQ0Ts5t+hRl7j+hDL9ZK+64EdYrqpjwXXbuPnP0WNnP7Ke12f5qH3BvTbqEHee29gdNceOcuf9chSGYPAGATGIDAGgTEIjEFgDAJjEBiDwBgExiAwBoExCIxBYAwCYxAYg8AYBMYgMAaBMQhMSZCawefS1UrWflMHvFsMPt86zH9zWdkrZcC7ZvA5S++huNQB7zVMARL2V3Sf/FCHGTXIZ1x+zu/PrttXXHP+Xqo1HFkEHlkjMAiMQWAMAmMQGIPAGATGIDAlQY7z67blRgbzNL+mPFzcBf/x+1Kv/T5X7Plim5iinB7DG+Tv+ogpxrDfQNQqCJ4f6jAGgTEIjEFgDAJjEBiDwBgExiAwBoExCIxBYAwCYxAYg8AYBMYgMAaBMQiMQWAMAmMQGIPAGATGIDBrCVIz4J06+HwvWgx4pww+34uaAe/hB58lSZIkSZKkHr4BY+pp6zwMxEMAAAAASUVORK5CYII="/>
+					</i></div></section>				<section class="sheet" id="skills">
+				</section>				<section class="sheet" id="languages">
+				</section>				<section class="sheet" id="interests">
+				</section>				<section class="sheet" id="references">
+				</section>			</div>
+		</div>
 	</body>
 </html>
